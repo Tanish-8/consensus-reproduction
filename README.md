@@ -1,6 +1,4 @@
-# ConSensus: Multi-Agent Collaboration for Multimodal Sensing
-
-Official implementation of ConSensus, a multi-agent collaboration framework for multimodal sensing tasks.
+# Official implementation of ConSensus: Multi-Agent Collaboration for Multimodal Sensing
 
 ## Getting Started
 
