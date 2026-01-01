@@ -1,0 +1,11 @@
+seed: 0
+temperature: 0.0 # 0.7 for self-consistency
+use_large_context: false # true for large datasets
+num_instances: 3 # only needed for self-consistency
+models: # list of model configurations
+- openai:gpt-oss-20b
+- openai:gpt-oss-20b
+- openai:gpt-oss-20b
+# more model configurations can be added
+data_path: ./example_data_path # path of the processed data
+log_path: ./example_log_path # where the logs will be saved
