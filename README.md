@@ -109,9 +109,9 @@ The following baseline methods are available:
 - **Self-Consistency**: `baselines/self_consistency/run.py`
 - **Self-Refine**: `baselines/self_refine/run.py`
 - **Debate**: `baselines/debate/run.py`
-- **Judge**: `baselines/judge/run.py`
+- **MAD**: `baselines/mad/run.py`
 - **CMD**: `baselines/cmd/run.py`
-- **Reconcile**: `baselines/reconcile/run.py`
+- **ReConcile**: `baselines/reconcile/run.py`
 
 Run any baseline with:
 ```bash
