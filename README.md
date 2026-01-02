@@ -1,6 +1,4 @@
-# ConSensus: Multi-Agent Collaboration for Multimodal Sensing
-
-Official implementation of ConSensus, a multi-agent collaboration framework for multimodal sensing tasks.
+# Official implementation of ConSensus: Multi-Agent Collaboration for Multimodal Sensing
 
 ## Getting Started
 
@@ -44,7 +42,7 @@ The following datasets are supported:
 python preprocess/preprocess_<dataset>.py --path <data_path> --out_dir <processed_output_path>
 ```
 
-2. **Split data for training/testing:**
+2. **Split processed data:**
 ```bash
 python preprocess/split.py \
     --data_path <processed_output_path> \
