@@ -115,3 +115,7 @@ Run any baseline with:
 ```bash
 python baselines/<baseline_name>/run.py --config_path <config_path>
 ```
+
+## Use of LLMs
+
+After the core implementation was complete, Cursor was used to assist with cleaning and refactoring the code and README documentation.
