@@ -251,7 +251,3 @@ If you find this work useful, please cite our paper:
   year={2026}
 }
 ```
-
-## Use of LLMs
-
-After the core implementation was complete, Cursor was used to assist with cleaning and refactoring the code and README documentation.
