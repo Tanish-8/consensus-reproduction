@@ -7,19 +7,21 @@ from langchain_openai import ChatOpenAI
 from langchain.chat_models import init_chat_model
 
 
-def load_models(models, temperature=0.0, num_ctx=15000):
+def load_models(models, temperature=0.0, top_p=1.0, num_ctx=15000):
     model_pool = AsyncModelPool()
     for model in models:
-        model_pool.add_model(Model(model, temperature=temperature, num_ctx=num_ctx))
+        model_pool.add_model(
+            Model(model, temperature=temperature, top_p=top_p, num_ctx=num_ctx)
+        )
     model_pool.init_models()
     return model_pool
 
 
 class Model:
-    def __init__(self, model, temperature, num_ctx):
+    def __init__(self, model, temperature, top_p, num_ctx):
         if model.startswith("ollama:"):
             model = model.replace("ollama:", "")
-            if "url:" in model:  # custom parsing for local ollama models
+            if "url:" in model:
                 model = model.replace("url:", "")
                 base_url = model.split("/")[0]
                 model_type = model.split("/")[1]
@@ -27,12 +29,14 @@ class Model:
                     model=model_type,
                     base_url=base_url,
                     temperature=temperature,
+                    top_p=top_p,
                     num_ctx=num_ctx,
                 )
             else:
                 self.model = ChatOllama(
                     model=model.replace("ollama:", ""),
                     temperature=temperature,
+                    top_p=top_p,
                     num_ctx=num_ctx,
                 )
         elif model.startswith("together"):
@@ -42,6 +46,7 @@ class Model:
             self.model = ChatTogether(
                 model=model.replace("together:", ""),
                 temperature=temperature,
+                top_p=top_p,
                 max_tokens=num_ctx,
                 max_retries=3,
             )
@@ -52,6 +57,7 @@ class Model:
             self.model = ChatOpenAI(
                 model=model.replace("openai:", ""),
                 temperature=temperature,
+                top_p=top_p,
             )
         else:
             self.model = init_chat_model(

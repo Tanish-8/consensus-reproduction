@@ -144,7 +144,16 @@ async def run_parallel_samples(config, model_pool):
 def run(config_path):
     config = yaml.load(open(config_path, "r", encoding="utf-8"), Loader=yaml.SafeLoader)
     np.random.seed(config["seed"])
-    model_pool = load_models(config["models"])
+    if config["use_large_context"]:
+        num_ctx = 30000
+    else:
+        num_ctx = 15000
+    model_pool = load_models(
+        config["models"],
+        temperature=config["temperature"],
+        top_p=config.get("top_p", 1.0),
+        num_ctx=num_ctx,
+    )
     print("Model pool initialized.")
     asyncio.run(run_parallel_samples(config, model_pool))
 

@@ -108,7 +108,7 @@ def run(config_path):
         num_ctx = 30000
     else:
         num_ctx = 12000
-    model_pool = load_models(config["models"], num_ctx=num_ctx)
+    model_pool = load_models(config["models"], top_p=config.get("top_p", 1.0), num_ctx=num_ctx)
     print("Model pool initialized.")
     asyncio.run(run_parallel_samples(config, model_pool))
 

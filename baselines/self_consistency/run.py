@@ -94,6 +94,7 @@ def run(config_path):
     model_pool = load_models(
         config["models"],
         temperature=config["temperature"],
+        top_p=config.get("top_p", 1.0),
         num_ctx=num_ctx,
     )
     print("Model pool initialized.")

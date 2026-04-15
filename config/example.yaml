@@ -1,6 +1,7 @@
 seed: 0
 temperature: 0.0 # 0.7 for self-consistency
-use_large_context: false # true for large datasets
+top_p: 1.0
+use_large_context: false # false → 15K context, true → 30K context
 num_instances: 3 # only needed for self-consistency
 models: # list of model configurations
 - openai:gpt-oss-20b

@@ -5,6 +5,7 @@
 ### Prerequisites
 
 - [Anaconda](https://www.anaconda.com/) (recommended) or Python 3.12+
+- [Ollama](https://ollama.com/) (for local model inference)
 
 ### Installation
 
@@ -22,7 +23,7 @@ pip install -r requirements.txt
 3. Set up API keys (as needed):
    - For OpenAI: `export OPENAI_API_KEY=your_key`
    - For Together AI: `export TOGETHER_API_KEY=your_key`
-   - For Ollama: configure locally (see model configuration)
+   - For Ollama: see [Ollama Setup](#ollama-setup) below
 
 ## Data Preprocessing
 
@@ -77,26 +78,140 @@ python preprocess/split.py \
 
 ### Model Configuration
 
-The current implementation supports inference using:
-- **Ollama**: Local models (e.g., `ollama:llama3`)
-- **OpenAI**: OpenAI API models (e.g., `openai:gpt-4`)
-- **Together AI**: Together AI models (e.g., `together:meta-llama/Llama-3-8b-chat-hf`)
+The configuration file (YAML) controls all experiment parameters. An example is provided in `config/example.yaml`.
 
-API keys must be set as environment variables before running.
+#### Configuration Parameters
+
+| Parameter | Description | Default |
+|---|---|---|
+| `seed` | Random seed for reproducibility | `0` |
+| `temperature` | Sampling temperature. `0.0` for deterministic (greedy) decoding, `0.7` for self-consistency. | `0.0` |
+| `top_p` | Nucleus sampling probability. `1.0` disables nucleus filtering (uses full distribution). | `1.0` |
+| `use_large_context` | Context window size. `false` = 15,000 tokens, `true` = 30,000 tokens. Enable for large datasets. | `false` |
+| `num_instances` | Number of sampled instances (only for self-consistency baseline). | `3` |
+| `models` | List of model strings specifying which LLMs to use (see [Supported Providers](#supported-providers)). | — |
+| `data_path` | Path to the preprocessed and split data directory. | — |
+| `log_path` | Directory where logs and results will be saved. | — |
+
+#### Inference Parameters for Reproducibility
+
+To reproduce the results reported in the paper, use the following settings:
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Temperature | `0.0` | Greedy decoding for deterministic outputs |
+| Top-p | `1.0` | No nucleus filtering |
+| Context length | 15,000 tokens | `use_large_context: false` (30,000 for large datasets) |
+| Seed | `0` | Controls data shuffling order |
+
+#### Supported Providers
+
+Models are specified as `<provider>:<model_name>` strings in the `models` list:
+
+- **Ollama** (local): `ollama:<model_name>` — e.g., `ollama:llama3`, `ollama:llama3.1:70b`
+- **OpenAI**: `openai:<model_name>` — e.g., `openai:gpt-4`; requires `OPENAI_API_KEY`
+- **Together AI**: `together:<model_name>` — e.g., `together:meta-llama/Llama-3-8b-chat-hf`; requires `TOGETHER_API_KEY`
+
+For Ollama with a remote server, use the URL syntax:
+```
+ollama:url:<host>:<port>/<model_name>
+```
+For example: `ollama:url:http://192.168.1.100:11434/llama3`
+
+#### Example Configuration (Ollama)
+
+```yaml
+seed: 0
+temperature: 0.0
+top_p: 1.0
+use_large_context: false
+models:
+- ollama:llama3
+- ollama:llama3
+- ollama:llama3
+data_path: ./data/WESAD/processed
+log_path: ./logs/WESAD_llama3
+```
+
+#### Example Configuration (OpenAI)
+
+```yaml
+seed: 0
+temperature: 0.0
+top_p: 1.0
+use_large_context: false
+models:
+- openai:gpt-4
+- openai:gpt-4
+- openai:gpt-4
+data_path: ./data/WESAD/processed
+log_path: ./logs/WESAD_gpt4
+```
+
+### Ollama Setup
+
+[Ollama](https://ollama.com/) allows running open-source LLMs locally. Follow these steps to set it up for ConSensus:
+
+1. **Install Ollama:**
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+2. **Start the Ollama server:**
+```bash
+ollama serve
+```
+This starts the server at `http://localhost:11434` by default. Keep this running in a separate terminal.
+
+3. **Pull a model:**
+```bash
+ollama pull llama3
+```
+Replace `llama3` with any supported model. Common choices:
+  - `llama3` — Llama 3 8B
+  - `llama3.1:70b` — Llama 3.1 70B (requires ~40GB VRAM)
+  - `gemma2` — Google Gemma 2
+  - `qwen2.5` — Qwen 2.5
+
+4. **Verify the model is available:**
+```bash
+ollama list
+```
+
+5. **Run the experiment** with the Ollama model in your config:
+```yaml
+models:
+- ollama:llama3
+- ollama:llama3
+- ollama:llama3
+```
+
+#### Advanced Ollama Configuration
+
+- **Custom host/port:** Set the `OLLAMA_HOST` environment variable before starting the server:
+  ```bash
+  OLLAMA_HOST=0.0.0.0:11434 ollama serve
+  ```
+  This is useful for serving Ollama on a remote machine accessible over the network.
+
+- **GPU selection:** Use `CUDA_VISIBLE_DEVICES` to control which GPUs Ollama uses:
+  ```bash
+  CUDA_VISIBLE_DEVICES=0,1 ollama serve
+  ```
+
+- **Remote Ollama server:** If Ollama runs on a different machine, use the URL syntax in the config:
+  ```yaml
+  models:
+  - ollama:url:http://192.168.1.100:11434/llama3
+  ```
+
+- **Context length:** The `use_large_context` config parameter controls the context window passed to Ollama (`num_ctx`). This overrides Ollama's default of 2,048 tokens, setting it to 15,000 (default) or 30,000 (large) to accommodate the multi-agent prompts.
 
 ### Running ConSensus
 
 ```bash
 python run_consensus.py --config_path <config_path>
 ```
-
-An example configuration file is provided in `config/example.yaml`. The configuration includes:
-- `seed`: Random seed for reproducibility
-- `temperature`: Sampling temperature (0.0 for deterministic, 0.7 for self-consistency)
-- `use_large_context`: Enable for large datasets
-- `models`: List of model configurations to use
-- `data_path`: Path to processed data
-- `log_path`: Where logs and results will be saved
 
 Final results are stored in the `log_path` specified in the config file.
 
