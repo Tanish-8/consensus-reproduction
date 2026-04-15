@@ -1,4 +1,12 @@
-# Official implementation of ConSensus: Multi-Agent Collaboration for Multimodal Sensing
+# ConSensus: Multi-Agent Collaboration for Multimodal Sensing (ACL '26)
+This is the official Python implementation of "ConSensus: Multi-Agent Collaboration for Multimodal Sensing (ACL '26 Findings, long paper)" by
+[Hyungjun Yoon](https://hjyoon.com/),
+[Mohammad Malekzadeh](https://mmalekzadeh.github.io/),
+[Sung-Ju Lee](https://sites.google.com/site/wewantsj/),
+[Fahim Kawsar](https://fahim-kawsar.net/), and
+[Lorena Qendro](https://lorenaqendro.github.io/).
+
+[![arXiv](https://img.shields.io/badge/arXiv-2601.06453-b31b1b.svg)](https://arxiv.org/abs/2601.06453)
 
 ## Getting Started
 
@@ -229,6 +237,19 @@ The following baseline methods are available:
 Run any baseline with:
 ```bash
 python baselines/<baseline_name>/run.py --config_path <config_path>
+```
+
+## Citation
+
+If you find this work useful, please cite our paper:
+
+```bibtex
+@article{yoon2026consensus,
+  title={ConSensus: Multi-Agent Collaboration for Multimodal Sensing},
+  author={Yoon, Hyungjun and Malekzadeh, Mohammad and Lee, Sung-Ju and Kawsar, Fahim and Qendro, Lorena},
+  journal={arXiv preprint arXiv:2601.06453},
+  year={2026}
+}
 ```
 
 ## Use of LLMs
