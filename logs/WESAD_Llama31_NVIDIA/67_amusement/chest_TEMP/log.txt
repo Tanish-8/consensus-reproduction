@@ -1,0 +1,92 @@
+[chest_TEMP] [SYSTEM]
+You are chest_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 700 Hz from the chest. From the most recent 60-second window, statistical features were extracted including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_TEMP] [SYSTEM]
+You are chest_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 700 Hz from the chest. From the most recent 60-second window, statistical features were extracted including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_TEMP] [HUMAN]
+You have received sensor features from chest_TEMP modality:
+chest_TEMP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_TEMP_mean: 34.32
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.20
+  - chest_TEMP_max: 34.47
+  - chest_TEMP_slope: 1.24e-06
+
+*Example of stress*:
+  - chest_TEMP_mean: 34.57
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.43
+  - chest_TEMP_max: 34.73
+  - chest_TEMP_slope: 5.12e-07
+
+*Example of amusement*:
+  - chest_TEMP_mean: 34.96
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.82
+  - chest_TEMP_max: 35.09
+  - chest_TEMP_slope: 2.13e-06
+
+**Current sample features**:
+  - chest_TEMP_mean: 35.04
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.90
+  - chest_TEMP_max: 35.20
+  - chest_TEMP_slope: -7.41e-08
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_TEMP] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be within a normal range for all three conditions. However, the chest_TEMP_mean of 35.04 is slightly higher than the examples for both 'stress' and 'amusement', but lower than the 'amusement' example. The chest_TEMP_std is consistent across all examples. The chest_TEMP_slope is very close to zero, which is consistent with the examples. Considering these factors, the current sample features seem to be most similar to the 'baseline' condition.",
+  "ANSWER": "baseline"
+}
+
+

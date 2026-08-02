@@ -1,0 +1,280 @@
+[chest_EMG] [SYSTEM]
+You are chest_EMG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EMG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electromyogram (EMG, in mV) signals were collected from upper back muscles at 700 Hz. Two processing chains were used: a high-pass filter followed by 5-second windows for statistical and frequency features (mean, std, range, integral, percentiles, mean/median/peak frequency, band energy from 0\u2013350 Hz); and a low-pass filter over a 60-second window to extract peak-related features (count, amplitude stats, normalized sum). Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A high-pass filter was applied to remove the DC component. From the resulting signal, features were computed over 5-second windows: mean, standard deviation, dynamic range, absolute integral, median, 10th percentile, 90th percentile, and frequency-domain features including mean, median, and peak frequency. Additionally, spectral energy was calculated across seven equally spaced frequency bands from 0 to 350 Hz. In the second chain, a 50 Hz low-pass filter was applied to the raw EMG signal. From the filtered signal, using a 60-second window, the number of peaks, mean and standard deviation of peak amplitudes, sum of peak amplitudes, and normalized sum of peak amplitudes were computed."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EMG] [HUMAN]
+You have received sensor features from chest_EMG modality:
+chest_EMG features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_EMG_mean: 2.90e-06
+  - chest_EMG_std: 0.01
+  - chest_EMG_dynamic_range: 0.11
+  - chest_EMG_absolute_integral: 0.05
+  - chest_EMG_median: -1.01e-04
+  - chest_EMG_10th_percentile: -0.02
+  - chest_EMG_90th_percentile: 0.02
+  - chest_EMG_mean_freq: 163.10
+  - chest_EMG_median_freq: 149.00
+  - chest_EMG_peak_freq: 163.00
+  - chest_EMG_band1_energy: 6.56e-10
+  - chest_EMG_band2_energy: 1.80e-05
+  - chest_EMG_band3_energy: 1.37e-04
+  - chest_EMG_band4_energy: 8.83e-05
+  - chest_EMG_band5_energy: 3.24e-05
+  - chest_EMG_band6_energy: 1.67e-05
+  - chest_EMG_band7_energy: 1.28e-05
+  - chest_EMG_num_peaks: 1655
+  - chest_EMG_peak_amplitude_mean: 6.82e-05
+  - chest_EMG_peak_amplitude_std: 5.20e-05
+  - chest_EMG_peak_amplitude_sum: 0.11
+  - chest_EMG_peak_amplitude_norm_sum: 0.11
+
+*Example of stress*:
+  - chest_EMG_mean: -8.73e-06
+  - chest_EMG_std: 0.02
+  - chest_EMG_dynamic_range: 0.16
+  - chest_EMG_absolute_integral: 0.07
+  - chest_EMG_median: -1.97e-04
+  - chest_EMG_10th_percentile: -0.02
+  - chest_EMG_90th_percentile: 0.02
+  - chest_EMG_mean_freq: 165.93
+  - chest_EMG_median_freq: 151.50
+  - chest_EMG_peak_freq: 133.50
+  - chest_EMG_band1_energy: 3.13e-10
+  - chest_EMG_band2_energy: 3.25e-05
+  - chest_EMG_band3_energy: 2.96e-04
+  - chest_EMG_band4_energy: 1.98e-04
+  - chest_EMG_band5_energy: 9.00e-05
+  - chest_EMG_band6_energy: 4.44e-05
+  - chest_EMG_band7_energy: 2.46e-05
+  - chest_EMG_num_peaks: 2453
+  - chest_EMG_peak_amplitude_mean: 8.36e-05
+  - chest_EMG_peak_amplitude_std: 2.97e-05
+  - chest_EMG_peak_amplitude_sum: 0.21
+  - chest_EMG_peak_amplitude_norm_sum: 0.13
+
+*Example of amusement*:
+  - chest_EMG_mean: -5.69e-07
+  - chest_EMG_std: 4.34e-03
+  - chest_EMG_dynamic_range: 0.04
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 1.22e-04
+  - chest_EMG_10th_percentile: -5.60e-03
+  - chest_EMG_90th_percentile: 5.39e-03
+  - chest_EMG_mean_freq: 197.78
+  - chest_EMG_median_freq: 185.50
+  - chest_EMG_peak_freq: 122.50
+  - chest_EMG_band1_energy: 2.19e-11
+  - chest_EMG_band2_energy: 7.22e-07
+  - chest_EMG_band3_energy: 1.09e-05
+  - chest_EMG_band4_energy: 1.03e-05
+  - chest_EMG_band5_energy: 6.89e-06
+  - chest_EMG_band6_energy: 5.15e-06
+  - chest_EMG_band7_energy: 4.10e-06
+  - chest_EMG_num_peaks: 1673
+  - chest_EMG_peak_amplitude_mean: 1.92e-05
+  - chest_EMG_peak_amplitude_std: 1.40e-05
+  - chest_EMG_peak_amplitude_sum: 0.03
+  - chest_EMG_peak_amplitude_norm_sum: 0.10
+
+**Current sample features**:
+  - chest_EMG_mean: 2.38e-07
+  - chest_EMG_std: 4.21e-03
+  - chest_EMG_dynamic_range: 0.03
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 1.68e-04
+  - chest_EMG_10th_percentile: -5.49e-03
+  - chest_EMG_90th_percentile: 5.25e-03
+  - chest_EMG_mean_freq: 199.21
+  - chest_EMG_median_freq: 186.50
+  - chest_EMG_peak_freq: 138.00
+  - chest_EMG_band1_energy: 1.61e-11
+  - chest_EMG_band2_energy: 6.77e-07
+  - chest_EMG_band3_energy: 9.97e-06
+  - chest_EMG_band4_energy: 9.36e-06
+  - chest_EMG_band5_energy: 6.75e-06
+  - chest_EMG_band6_energy: 4.71e-06
+  - chest_EMG_band7_energy: 3.95e-06
+  - chest_EMG_num_peaks: 527
+  - chest_EMG_peak_amplitude_mean: 6.58e-05
+  - chest_EMG_peak_amplitude_std: 5.86e-05
+  - chest_EMG_peak_amplitude_sum: 0.03
+  - chest_EMG_peak_amplitude_norm_sum: 0.08
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_EMG] [AI]
+{
+  "REASON": "The current sample features show a low mean EMG value (2.38e-07) and a relatively high standard deviation (4.21e-03), which is more similar to the 'amusement' example. Additionally, the median EMG value (1.68e-04) and the 10th and 90th percentiles (-5.49e-03 and 5.25e-03) are also more in line with the 'amusement' example. Furthermore, the peak frequency (138.00) is lower than in the 'stress' example, and the energy in the frequency bands is also more similar to the 'amusement' example. Therefore, based on these features, the most likely emotional state is 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+
+[chest_EMG] [SYSTEM]
+You are chest_EMG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EMG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electromyogram (EMG, in mV) signals were collected from upper back muscles at 700 Hz. Two processing chains were used: a high-pass filter followed by 5-second windows for statistical and frequency features (mean, std, range, integral, percentiles, mean/median/peak frequency, band energy from 0\u2013350 Hz); and a low-pass filter over a 60-second window to extract peak-related features (count, amplitude stats, normalized sum). Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A high-pass filter was applied to remove the DC component. From the resulting signal, features were computed over 5-second windows: mean, standard deviation, dynamic range, absolute integral, median, 10th percentile, 90th percentile, and frequency-domain features including mean, median, and peak frequency. Additionally, spectral energy was calculated across seven equally spaced frequency bands from 0 to 350 Hz. In the second chain, a 50 Hz low-pass filter was applied to the raw EMG signal. From the filtered signal, using a 60-second window, the number of peaks, mean and standard deviation of peak amplitudes, sum of peak amplitudes, and normalized sum of peak amplitudes were computed."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EMG] [HUMAN]
+You have received sensor features from chest_EMG modality:
+chest_EMG features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_EMG_mean: 2.90e-06
+  - chest_EMG_std: 0.01
+  - chest_EMG_dynamic_range: 0.11
+  - chest_EMG_absolute_integral: 0.05
+  - chest_EMG_median: -1.01e-04
+  - chest_EMG_10th_percentile: -0.02
+  - chest_EMG_90th_percentile: 0.02
+  - chest_EMG_mean_freq: 163.10
+  - chest_EMG_median_freq: 149.00
+  - chest_EMG_peak_freq: 163.00
+  - chest_EMG_band1_energy: 6.56e-10
+  - chest_EMG_band2_energy: 1.80e-05
+  - chest_EMG_band3_energy: 1.37e-04
+  - chest_EMG_band4_energy: 8.83e-05
+  - chest_EMG_band5_energy: 3.24e-05
+  - chest_EMG_band6_energy: 1.67e-05
+  - chest_EMG_band7_energy: 1.28e-05
+  - chest_EMG_num_peaks: 1655
+  - chest_EMG_peak_amplitude_mean: 6.82e-05
+  - chest_EMG_peak_amplitude_std: 5.20e-05
+  - chest_EMG_peak_amplitude_sum: 0.11
+  - chest_EMG_peak_amplitude_norm_sum: 0.11
+
+*Example of stress*:
+  - chest_EMG_mean: -8.73e-06
+  - chest_EMG_std: 0.02
+  - chest_EMG_dynamic_range: 0.16
+  - chest_EMG_absolute_integral: 0.07
+  - chest_EMG_median: -1.97e-04
+  - chest_EMG_10th_percentile: -0.02
+  - chest_EMG_90th_percentile: 0.02
+  - chest_EMG_mean_freq: 165.93
+  - chest_EMG_median_freq: 151.50
+  - chest_EMG_peak_freq: 133.50
+  - chest_EMG_band1_energy: 3.13e-10
+  - chest_EMG_band2_energy: 3.25e-05
+  - chest_EMG_band3_energy: 2.96e-04
+  - chest_EMG_band4_energy: 1.98e-04
+  - chest_EMG_band5_energy: 9.00e-05
+  - chest_EMG_band6_energy: 4.44e-05
+  - chest_EMG_band7_energy: 2.46e-05
+  - chest_EMG_num_peaks: 2453
+  - chest_EMG_peak_amplitude_mean: 8.36e-05
+  - chest_EMG_peak_amplitude_std: 2.97e-05
+  - chest_EMG_peak_amplitude_sum: 0.21
+  - chest_EMG_peak_amplitude_norm_sum: 0.13
+
+*Example of amusement*:
+  - chest_EMG_mean: -5.69e-07
+  - chest_EMG_std: 4.34e-03
+  - chest_EMG_dynamic_range: 0.04
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 1.22e-04
+  - chest_EMG_10th_percentile: -5.60e-03
+  - chest_EMG_90th_percentile: 5.39e-03
+  - chest_EMG_mean_freq: 197.78
+  - chest_EMG_median_freq: 185.50
+  - chest_EMG_peak_freq: 122.50
+  - chest_EMG_band1_energy: 2.19e-11
+  - chest_EMG_band2_energy: 7.22e-07
+  - chest_EMG_band3_energy: 1.09e-05
+  - chest_EMG_band4_energy: 1.03e-05
+  - chest_EMG_band5_energy: 6.89e-06
+  - chest_EMG_band6_energy: 5.15e-06
+  - chest_EMG_band7_energy: 4.10e-06
+  - chest_EMG_num_peaks: 1673
+  - chest_EMG_peak_amplitude_mean: 1.92e-05
+  - chest_EMG_peak_amplitude_std: 1.40e-05
+  - chest_EMG_peak_amplitude_sum: 0.03
+  - chest_EMG_peak_amplitude_norm_sum: 0.10
+
+**Current sample features**:
+  - chest_EMG_mean: 2.38e-07
+  - chest_EMG_std: 4.21e-03
+  - chest_EMG_dynamic_range: 0.03
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 1.68e-04
+  - chest_EMG_10th_percentile: -5.49e-03
+  - chest_EMG_90th_percentile: 5.25e-03
+  - chest_EMG_mean_freq: 199.21
+  - chest_EMG_median_freq: 186.50
+  - chest_EMG_peak_freq: 138.00
+  - chest_EMG_band1_energy: 1.61e-11
+  - chest_EMG_band2_energy: 6.77e-07
+  - chest_EMG_band3_energy: 9.97e-06
+  - chest_EMG_band4_energy: 9.36e-06
+  - chest_EMG_band5_energy: 6.75e-06
+  - chest_EMG_band6_energy: 4.71e-06
+  - chest_EMG_band7_energy: 3.95e-06
+  - chest_EMG_num_peaks: 527
+  - chest_EMG_peak_amplitude_mean: 6.58e-05
+  - chest_EMG_peak_amplitude_std: 5.86e-05
+  - chest_EMG_peak_amplitude_sum: 0.03
+  - chest_EMG_peak_amplitude_norm_sum: 0.08
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_EMG] [AI]
+{
+  "REASON": "The current sample features show a low mean EMG value (2.38e-07) and a relatively high standard deviation (4.21e-03), which is more similar to the 'amusement' example. Additionally, the median EMG value (1.68e-04) and the 10th and 90th percentiles (-5.49e-03 and 5.25e-03) are also more in line with the 'amusement' example. Furthermore, the peak frequency (138.00) is lower than in the 'stress' example, which suggests a lower level of muscle activity. The energy in the frequency bands is also relatively low, which is consistent with the 'amusement' example. Therefore, based on these features, the most likely emotional state is 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+

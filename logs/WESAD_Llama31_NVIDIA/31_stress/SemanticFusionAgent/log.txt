@@ -1,0 +1,92 @@
+[SemanticFusionAgent] [SYSTEM]
+You are a fusion agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents based on their interpretations of different modalities.
+Your goal is to provide a final reasoned answer for the task.
+
+
+[SemanticFusionAgent] [SYSTEM]
+You are a fusion agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents based on their interpretations of different modalities.
+Your goal is to provide a final reasoned answer for the task.
+
+
+[SemanticFusionAgent] [HUMAN]
+You have received responses from multiple sensing agents:
+{
+  "chest_ACC": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features for 'chest_ACC_y_peak_frequency' is 0.53, which is significantly higher than the other examples. This could indicate a deviation from the expected pattern for amusement or stress. However, the other features seem to be more in line with the stress example, such as 'chest_ACC_x_std' and 'chest_ACC_mag_absolute_integral'. Considering the slight deviation in 'chest_ACC_y_peak_frequency' and the overall similarity to the stress example, I lean towards classifying the current sample as 'stress'."
+  },
+  "chest_ECG": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'stress' condition, as the heart rate mean (99.00) and standard deviation (12.68) are higher than the 'baseline' condition, but lower than the 'amusement' condition. Additionally, the heart rate variability (hrv) features such as pnn50 (30.21) and rmssd (99.79) are also within the range of the 'stress' condition. However, the lf_hf_ratio (0.48) is closer to the 'baseline' condition. Considering the provided examples and the calculated values, the current sample features are more indicative of the 'stress' condition."
+  },
+  "chest_EDA": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided features, the current sample features are most similar to the 'stress' example. The mean and scl_mean values are high (19.02 and 19.01 respectively), indicating a high skin conductance level. The scl_time_corr is also high (0.99), suggesting a strong correlation between the skin conductance level and time, which is consistent with the stress condition. Additionally, the number of SCR events (scr_num_segments) is high (15), and the area under the SCR curve (scr_auc) is also high (1.60), indicating a significant skin conductance response. These features are more indicative of the 'stress' condition than the 'baseline' or 'amusement' conditions."
+  },
+  "chest_EMG": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a mean frequency (chest_EMG_mean_freq) of 212.12 Hz, which is higher than the baseline example (165.38 Hz) and lower than the stress example (219.14 Hz). The median frequency (chest_EMG_median_freq) is also higher than the baseline example (144.00 Hz) and lower than the stress example (218.50 Hz). Additionally, the number of peaks (chest_EMG_num_peaks) is 2066, which is closer to the baseline example (2049) than the stress example (1287). These features suggest a mix of characteristics from both baseline and stress conditions. However, considering the overall pattern, I lean towards the baseline condition due to the relatively low mean and median frequencies, and the number of peaks being closer to the baseline example."
+  },
+  "chest_RESP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the current sample features, the inhale duration mean and inhale duration std are higher than the baseline examples, but lower than the stress examples. The inhale to exhale ratio is higher than the baseline and stress examples, which might indicate a more relaxed state. However, the respiration rate is lower than the baseline and amusement examples, which might indicate a more stressed state. Considering these mixed signals, the most likely emotional state is stress, but with some uncertainty."
+  },
+  "chest_TEMP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'stress' condition, as the mean skin temperature (chest_TEMP_mean) is higher (34.96) compared to the 'baseline' (34.42) and 'amusement' (34.44) examples. Additionally, the standard deviation (chest_TEMP_std) is slightly higher than the 'baseline' and 'amusement' examples, indicating a possible increase in skin temperature variability. However, the slope (chest_TEMP_slope) is relatively low, which might suggest that the increase in skin temperature is not as rapid as in the 'stress' example. Considering these factors, the current sample features are more likely to be associated with the 'stress' condition."
+  },
+  "wrist_ACC": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided sensor features, the current sample features show low variability in the x-axis (wrist_ACC_x_std: 0.80) and low peak frequency (wrist_ACC_x_peak_frequency: 0.02), which is more similar to the baseline example. Additionally, the absolute integral values for the x-axis (wrist_ACC_x_absolute_integral: 3304.62) and z-axis (wrist_ACC_z_absolute_integral: 332.91) are closer to the baseline example. However, the y-axis mean values (-29.77 and -5.55) are more extreme than the baseline example, but not as extreme as the stress example. Considering these factors, the current sample features are most likely indicative of a baseline emotional state."
+  },
+  "wrist_BVP": {
+    "ANSWER": "stress",
+    "REASON": "The current sample features show a high heart rate mean (85.21) and a high pnn50 value (83.78), which are indicative of stress. Additionally, the LF/HF ratio (0.47) is relatively low, which is also consistent with stress. Although the features are not identical to the stress example, they are more similar to the stress example than the baseline or amusement examples."
+  },
+  "wrist_EDA": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided features, the current sample features show a high mean and standard deviation of EDA, indicating a significant physiological response. The slope of the EDA signal is close to zero, suggesting a stable baseline. The number of SCR events and the sum of SCR magnitudes are also high, indicating a strong phasic response. The area under the SCR curve is also high, suggesting a sustained response. These features are more similar to the stress example than the baseline or amusement examples. However, the correlation between SCL and time is relatively low, which is not typical for the stress condition. Considering the uncertainty in the features, I will choose the answer based on the overall pattern of the features."
+  },
+  "wrist_TEMP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples, the current sample features seem to be more similar to the 'stress' example. The mean skin temperature is lower (32.79 vs 32.96), the standard deviation is similar (0.04 vs 0.02), and the slope is also similar (-4.17e-04 vs -1.67e-04). Although the features are not identical, they are closer to the 'stress' example than the other two. However, it's essential to note that the sensor features might be wrong due to data collection or processing, and this classification should be taken as a tentative interpretation."
+  }
+}
+
+Using your own knowledge and expertise, analyze the reasonings and answers and provide a final reasoned answer.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[SemanticFusionAgent] [AI]
+{
+  "REASON": "After analyzing the reasonings from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_RESP, chest_TEMP, wrist_BVP, wrist_EDA, wrist_TEMP) are consistently classifying the emotional state as 'stress'. Although some agents (chest_EMG, wrist_ACC) are leaning towards 'baseline', their reasonings are not as strong as the ones supporting 'stress'. The overall pattern of the features suggests a high level of physiological arousal, which is indicative of the 'stress' condition. Additionally, the features that are not typical for 'stress' (such as the low LF/HF ratio in wrist_BVP and the low correlation between SCL and time in wrist_EDA) are not strong enough to override the majority of the evidence pointing towards 'stress'. Therefore, the final answer is 'stress'.",
+  "ANSWER": "stress"
+}
+
+

@@ -239,6 +239,18 @@ Run any baseline with:
 python baselines/<baseline_name>/run.py --config_path <config_path>
 ```
 
+## Reproduction
+
+This repository was reproduced using the WESAD dataset and Llama-3.1-8B-Instruct hosted through NVIDIA Build.
+
+The reproduction includes:
+- NVIDIA Build integration
+- WESAD compatibility fixes
+- Evaluation pipeline
+- Experimental results
+
+For complete details, see `REPRODUCTION_REPORT.md`.
+
 ## Citation
 
 If you find this work useful, please cite our paper:

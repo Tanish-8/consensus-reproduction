@@ -1,5 +1,6 @@
 import os
 import json
+import pickle
 import warnings
 import numpy as np
 import pandas as pd
@@ -530,7 +531,8 @@ def preprocess(
     noise_alpha=0.15,
 ):
     user_id = os.path.basename(user_path)
-    sync_data = pd.read_pickle(os.path.join(user_path, f"{user_id}.pkl"))
+    with open(os.path.join(user_path, f"{user_id}.pkl"), "rb") as f:
+        sync_data = pickle.load(f, encoding="latin1")
 
     signal = sync_data["signal"]
     label = sync_data["label"]

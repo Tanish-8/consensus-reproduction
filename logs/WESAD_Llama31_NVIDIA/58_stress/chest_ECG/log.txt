@@ -1,0 +1,148 @@
+[chest_ECG] [SYSTEM]
+You are chest_ECG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ECG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrocardiogram (ECG, in mV) signals were recorded at 700 Hz using a chest-worn sensor. Heartbeats were detected via peak detection, and heart rate (hr) and heart rate variability (hrv) features were derived. Features include statistical measures (mean, std), time-domain HRV metrics (pnn50, tinn, rmssd), and frequency-domain components (ulf, lf, hf, uhf, total_power, lf_hf_ratio), along with their normalized and relative versions. Features were computed from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Heartbeats were detected via peak detection. From the inter-beat intervals, heart rate (hr) features including mean and standard deviation were derived. Heart rate variability (hrv) features were also computed, including: rmssd (root mean square of successive differences), pnn50 (percentage of intervals differing by more than 50 ms), tinn (triangular interpolation of NN interval histogram), and standard deviation. Frequency-domain HRV features were extracted across the following bands: ulf (0.01\u20130.04 Hz), lf (0.04\u20130.15 Hz), hf (0.15\u20130.4 Hz), and uhf (0.4\u20131.0 Hz). Additional features include total power, lf_hf_ratio, relative power (rel_ulf, rel_lf, rel_hf, rel_uhf), and normalized LF and HF (normalized_lf, normalized_hf)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_ECG] [SYSTEM]
+You are chest_ECG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ECG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrocardiogram (ECG, in mV) signals were recorded at 700 Hz using a chest-worn sensor. Heartbeats were detected via peak detection, and heart rate (hr) and heart rate variability (hrv) features were derived. Features include statistical measures (mean, std), time-domain HRV metrics (pnn50, tinn, rmssd), and frequency-domain components (ulf, lf, hf, uhf, total_power, lf_hf_ratio), along with their normalized and relative versions. Features were computed from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Heartbeats were detected via peak detection. From the inter-beat intervals, heart rate (hr) features including mean and standard deviation were derived. Heart rate variability (hrv) features were also computed, including: rmssd (root mean square of successive differences), pnn50 (percentage of intervals differing by more than 50 ms), tinn (triangular interpolation of NN interval histogram), and standard deviation. Frequency-domain HRV features were extracted across the following bands: ulf (0.01\u20130.04 Hz), lf (0.04\u20130.15 Hz), hf (0.15\u20130.4 Hz), and uhf (0.4\u20131.0 Hz). Additional features include total power, lf_hf_ratio, relative power (rel_ulf, rel_lf, rel_hf, rel_uhf), and normalized LF and HF (normalized_lf, normalized_hf)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_ECG] [HUMAN]
+You have received sensor features from chest_ECG modality:
+chest_ECG features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_ECG_hr_mean: 62.79
+  - chest_ECG_hr_std: 5.18
+  - chest_ECG_hrv_mean: 961.87
+  - chest_ECG_hrv_std: 78.79
+  - chest_ECG_hrv_pnn50: 67.21
+  - chest_ECG_hrv_tinn: 218.75
+  - chest_ECG_hrv_rmssd: 91.81
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 0.06
+  - chest_ECG_hrv_hf: 0.08
+  - chest_ECG_hrv_uhf: 2.18e-03
+  - chest_ECG_hrv_lf_hf_ratio: 0.73
+  - chest_ECG_hrv_total_power: 0.14
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.41
+  - chest_ECG_hrv_rel_hf: 0.57
+  - chest_ECG_hrv_rel_uhf: 0.02
+  - chest_ECG_hrv_normalized_lf: 0.41
+  - chest_ECG_hrv_normalized_hf: 0.57
+
+*Example of stress*:
+  - chest_ECG_hr_mean: 93.71
+  - chest_ECG_hr_std: 11.49
+  - chest_ECG_hrv_mean: 650.31
+  - chest_ECG_hrv_std: 83.82
+  - chest_ECG_hrv_pnn50: 20.88
+  - chest_ECG_hrv_tinn: 85.94
+  - chest_ECG_hrv_rmssd: 47.37
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 0.01
+  - chest_ECG_hrv_hf: 0.03
+  - chest_ECG_hrv_uhf: 1.75e-03
+  - chest_ECG_hrv_lf_hf_ratio: 0.35
+  - chest_ECG_hrv_total_power: 0.04
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.25
+  - chest_ECG_hrv_rel_hf: 0.71
+  - chest_ECG_hrv_rel_uhf: 0.04
+  - chest_ECG_hrv_normalized_lf: 0.25
+  - chest_ECG_hrv_normalized_hf: 0.71
+
+*Example of amusement*:
+  - chest_ECG_hr_mean: 73.60
+  - chest_ECG_hr_std: 6.99
+  - chest_ECG_hrv_mean: 822.46
+  - chest_ECG_hrv_std: 78.12
+  - chest_ECG_hrv_pnn50: 22.22
+  - chest_ECG_hrv_tinn: 148.44
+  - chest_ECG_hrv_rmssd: 43.05
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 0.05
+  - chest_ECG_hrv_hf: 0.01
+  - chest_ECG_hrv_uhf: 6.31e-04
+  - chest_ECG_hrv_lf_hf_ratio: 3.88
+  - chest_ECG_hrv_total_power: 0.07
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.79
+  - chest_ECG_hrv_rel_hf: 0.20
+  - chest_ECG_hrv_rel_uhf: 9.67e-03
+  - chest_ECG_hrv_normalized_lf: 0.79
+  - chest_ECG_hrv_normalized_hf: 0.20
+
+**Current sample features**:
+  - chest_ECG_hr_mean: 107.31
+  - chest_ECG_hr_std: 5.77
+  - chest_ECG_hrv_mean: 560.84
+  - chest_ECG_hrv_std: 31.89
+  - chest_ECG_hrv_pnn50: 2.86
+  - chest_ECG_hrv_tinn: 70.31
+  - chest_ECG_hrv_rmssd: 16.46
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 7.86e-03
+  - chest_ECG_hrv_hf: 6.37e-03
+  - chest_ECG_hrv_uhf: 7.79e-04
+  - chest_ECG_hrv_lf_hf_ratio: 1.24
+  - chest_ECG_hrv_total_power: 0.02
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.52
+  - chest_ECG_hrv_rel_hf: 0.42
+  - chest_ECG_hrv_rel_uhf: 0.05
+  - chest_ECG_hrv_normalized_lf: 0.52
+  - chest_ECG_hrv_normalized_hf: 0.42
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_ECG] [AI]
+{
+  "REASON": "Based on the provided features, the current sample features show a higher heart rate (chest_ECG_hr_mean: 107.31) compared to the baseline example (chest_ECG_hr_mean: 62.79) and the stress example (chest_ECG_hr_mean: 93.71). However, it is lower than the amusement example (chest_ECG_hr_mean: 73.60). Additionally, the heart rate variability (HRV) features such as chest_ECG_hrv_rmssd (16.46) and chest_ECG_hrv_pnn50 (2.86) are lower than the baseline example (chest_ECG_hrv_rmssd: 91.81 and chest_ECG_hrv_pnn50: 67.21) and the amusement example (chest_ECG_hrv_rmssd: 43.05 and chest_ECG_hrv_pnn50: 22.22). This suggests a lower level of stress and a more neutral affective state. The LF/HF ratio (chest_ECG_hrv_lf_hf_ratio: 1.24) is also higher than the stress example (chest_ECG_hrv_lf_hf_ratio: 0.35) and the amusement example (chest_ECG_hrv_lf_hf_ratio: 3.88), which is more typical of a neutral or baseline state. Therefore, the current sample features are most likely indicative of a baseline emotional state.",
+  "ANSWER": "baseline"
+}
+
+

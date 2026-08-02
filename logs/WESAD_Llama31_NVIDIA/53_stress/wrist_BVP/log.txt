@@ -1,0 +1,148 @@
+[wrist_BVP] [SYSTEM]
+You are wrist_BVP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_BVP modality, and you have the following information about the modality:
+{
+  "Data collection": "Blood volume pulse (BVP, unitless) was collected at 64 Hz from the wrist. Peak detection was applied to extract heartbeats, and from this, heart rate (HR) and heart rate variability (HRV) features were derived. Features include HRV statistics (mean, std, rmssd, tinn, pnn50) and spectral energy across standard frequency bands (ulf, lf, hf, uhf), as well as total power and ratios (e.g., lf_hf_ratio). Features were extracted from a 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Using peak detection on the raw PPG signal, heartbeat intervals were identified. The same set of hr and hrv features as for ECG were extracted, including: mean and standard deviation (std) of hr, rmssd, pnn50, tinn, frequency-domain energy in ulf, lf, hf, uhf bands, LF/HF ratio, total power, relative power per band, and normalized LF and HF components."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_BVP] [SYSTEM]
+You are wrist_BVP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_BVP modality, and you have the following information about the modality:
+{
+  "Data collection": "Blood volume pulse (BVP, unitless) was collected at 64 Hz from the wrist. Peak detection was applied to extract heartbeats, and from this, heart rate (HR) and heart rate variability (HRV) features were derived. Features include HRV statistics (mean, std, rmssd, tinn, pnn50) and spectral energy across standard frequency bands (ulf, lf, hf, uhf), as well as total power and ratios (e.g., lf_hf_ratio). Features were extracted from a 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Using peak detection on the raw PPG signal, heartbeat intervals were identified. The same set of hr and hrv features as for ECG were extracted, including: mean and standard deviation (std) of hr, rmssd, pnn50, tinn, frequency-domain energy in ulf, lf, hf, uhf bands, LF/HF ratio, total power, relative power per band, and normalized LF and HF components."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_BVP] [HUMAN]
+You have received sensor features from wrist_BVP modality:
+wrist_BVP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_BVP_hr_mean: 76.64
+  - wrist_BVP_hr_std: 25.12
+  - wrist_BVP_hrv_mean: 984.90
+  - wrist_BVP_hrv_std: 1175.81
+  - wrist_BVP_hrv_pnn50: 61.67
+  - wrist_BVP_hrv_tinn: 468.75
+  - wrist_BVP_hrv_rmssd: 1676.82
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.03
+  - wrist_BVP_hrv_hf: 1.22e-03
+  - wrist_BVP_hrv_uhf: 3.43e-05
+  - wrist_BVP_hrv_lf_hf_ratio: 21.38
+  - wrist_BVP_hrv_total_power: 0.03
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.95
+  - wrist_BVP_hrv_rel_hf: 0.04
+  - wrist_BVP_hrv_rel_uhf: 1.25e-03
+  - wrist_BVP_hrv_normalized_lf: 0.95
+  - wrist_BVP_hrv_normalized_hf: 0.04
+
+*Example of stress*:
+  - wrist_BVP_hr_mean: 84.99
+  - wrist_BVP_hr_std: 35.08
+  - wrist_BVP_hrv_mean: 842.41
+  - wrist_BVP_hrv_std: 381.51
+  - wrist_BVP_hrv_pnn50: 85.71
+  - wrist_BVP_hrv_tinn: 0.00e+00
+  - wrist_BVP_hrv_rmssd: 507.38
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.03
+  - wrist_BVP_hrv_hf: 0.08
+  - wrist_BVP_hrv_uhf: 0.02
+  - wrist_BVP_hrv_lf_hf_ratio: 0.39
+  - wrist_BVP_hrv_total_power: 0.13
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.24
+  - wrist_BVP_hrv_rel_hf: 0.61
+  - wrist_BVP_hrv_rel_uhf: 0.16
+  - wrist_BVP_hrv_normalized_lf: 0.24
+  - wrist_BVP_hrv_normalized_hf: 0.61
+
+*Example of amusement*:
+  - wrist_BVP_hr_mean: 70.09
+  - wrist_BVP_hr_std: 19.60
+  - wrist_BVP_hrv_mean: 904.81
+  - wrist_BVP_hrv_std: 193.58
+  - wrist_BVP_hrv_pnn50: 70.77
+  - wrist_BVP_hrv_tinn: 531.25
+  - wrist_BVP_hrv_rmssd: 243.25
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.03
+  - wrist_BVP_hrv_hf: 0.11
+  - wrist_BVP_hrv_uhf: 0.04
+  - wrist_BVP_hrv_lf_hf_ratio: 0.25
+  - wrist_BVP_hrv_total_power: 0.18
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.15
+  - wrist_BVP_hrv_rel_hf: 0.62
+  - wrist_BVP_hrv_rel_uhf: 0.23
+  - wrist_BVP_hrv_normalized_lf: 0.15
+  - wrist_BVP_hrv_normalized_hf: 0.62
+
+**Current sample features**:
+  - wrist_BVP_hr_mean: 81.20
+  - wrist_BVP_hr_std: 28.72
+  - wrist_BVP_hrv_mean: 823.28
+  - wrist_BVP_hrv_std: 261.61
+  - wrist_BVP_hrv_pnn50: 90.14
+  - wrist_BVP_hrv_tinn: 421.88
+  - wrist_BVP_hrv_rmssd: 389.18
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.04
+  - wrist_BVP_hrv_hf: 0.10
+  - wrist_BVP_hrv_uhf: 0.10
+  - wrist_BVP_hrv_lf_hf_ratio: 0.39
+  - wrist_BVP_hrv_total_power: 0.24
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.16
+  - wrist_BVP_hrv_rel_hf: 0.42
+  - wrist_BVP_hrv_rel_uhf: 0.42
+  - wrist_BVP_hrv_normalized_lf: 0.16
+  - wrist_BVP_hrv_normalized_hf: 0.42
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_BVP] [AI]
+{
+  "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a higher HR_mean (81.20) and HR_std (28.72) compared to the baseline example (76.64, 25.12), but lower than the stress example (84.99, 35.08). The HRV features, such as HRV_mean (823.28) and HRV_std (261.61), are also higher than the baseline example (984.90, 1175.81), but lower than the stress example (842.41, 381.51). The LF_HF ratio (0.39) is similar to the stress example (0.39). Considering these similarities and differences, I conclude that the current sample features are more similar to the stress example than the baseline or amusement examples.",
+  "ANSWER": "stress"
+}
+
+

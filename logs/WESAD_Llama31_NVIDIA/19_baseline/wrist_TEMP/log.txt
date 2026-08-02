@@ -1,0 +1,144 @@
+[wrist_TEMP] [SYSTEM]
+You are wrist_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 4 Hz from the wrist. Statistical features were extracted from the most recent 60-second window, including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_TEMP] [HUMAN]
+You have received sensor features from wrist_TEMP modality:
+wrist_TEMP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_TEMP_mean: 33.88
+  - wrist_TEMP_std: 0.05
+  - wrist_TEMP_min: 33.81
+  - wrist_TEMP_max: 33.99
+  - wrist_TEMP_slope: 5.83e-04
+
+*Example of stress*:
+  - wrist_TEMP_mean: 32.86
+  - wrist_TEMP_std: 0.03
+  - wrist_TEMP_min: 32.81
+  - wrist_TEMP_max: 32.93
+  - wrist_TEMP_slope: -4.17e-04
+
+*Example of amusement*:
+  - wrist_TEMP_mean: 32.42
+  - wrist_TEMP_std: 0.02
+  - wrist_TEMP_min: 32.39
+  - wrist_TEMP_max: 32.45
+  - wrist_TEMP_slope: -1.67e-04
+
+**Current sample features**:
+  - wrist_TEMP_mean: 31.53
+  - wrist_TEMP_std: 0.07
+  - wrist_TEMP_min: 31.41
+  - wrist_TEMP_max: 31.63
+  - wrist_TEMP_slope: 9.17e-04
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_TEMP] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'stress' condition. The mean skin temperature (31.53°C) is lower than the 'amusement' condition (32.42°C) and closer to the 'stress' condition (32.86°C). The standard deviation (0.07) is also higher than the 'amusement' condition (0.02) and lower than the 'baseline' condition (0.05). The slope (9.17e-04) is positive, which is more similar to the 'stress' condition (5.83e-04) than the 'amusement' condition (-1.67e-04). Although the features do not perfectly match any of the examples, they seem to be more indicative of the 'stress' condition.",
+  "ANSWER": "stress"
+}
+
+
+[wrist_TEMP] [SYSTEM]
+You are wrist_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 4 Hz from the wrist. Statistical features were extracted from the most recent 60-second window, including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_TEMP] [HUMAN]
+You have received sensor features from wrist_TEMP modality:
+wrist_TEMP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_TEMP_mean: 33.88
+  - wrist_TEMP_std: 0.05
+  - wrist_TEMP_min: 33.81
+  - wrist_TEMP_max: 33.99
+  - wrist_TEMP_slope: 5.83e-04
+
+*Example of stress*:
+  - wrist_TEMP_mean: 32.86
+  - wrist_TEMP_std: 0.03
+  - wrist_TEMP_min: 32.81
+  - wrist_TEMP_max: 32.93
+  - wrist_TEMP_slope: -4.17e-04
+
+*Example of amusement*:
+  - wrist_TEMP_mean: 32.42
+  - wrist_TEMP_std: 0.02
+  - wrist_TEMP_min: 32.39
+  - wrist_TEMP_max: 32.45
+  - wrist_TEMP_slope: -1.67e-04
+
+**Current sample features**:
+  - wrist_TEMP_mean: 31.53
+  - wrist_TEMP_std: 0.07
+  - wrist_TEMP_min: 31.41
+  - wrist_TEMP_max: 31.63
+  - wrist_TEMP_slope: 9.17e-04
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_TEMP] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be more similar to the 'stress' example. The mean temperature is lower (31.53 vs 32.86), the standard deviation is higher (0.07 vs 0.03), and the slope is positive (9.17e-04 vs -4.17e-04), which could indicate a slight increase in temperature over time. However, the difference is not as pronounced as in the 'stress' example, and the features do not align perfectly with any of the examples. Considering the uncertainty in the features, I will choose the class that is most similar to the current sample features.",
+  "ANSWER": "stress"
+}
+
+

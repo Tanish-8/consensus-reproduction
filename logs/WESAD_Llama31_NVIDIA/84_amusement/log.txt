@@ -1,0 +1,1577 @@
+[chest_ACC] [SYSTEM]
+You are chest_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Physiological data was collected from a chest-worn accelerometer (ACC, in g), recording acceleration across three axes (x, y, z) and the overall magnitude at 700 Hz. Features were computed from the most recent 5-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_ECG] [SYSTEM]
+You are chest_ECG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ECG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrocardiogram (ECG, in mV) signals were recorded at 700 Hz using a chest-worn sensor. Heartbeats were detected via peak detection, and heart rate (hr) and heart rate variability (hrv) features were derived. Features include statistical measures (mean, std), time-domain HRV metrics (pnn50, tinn, rmssd), and frequency-domain components (ulf, lf, hf, uhf, total_power, lf_hf_ratio), along with their normalized and relative versions. Features were computed from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Heartbeats were detected via peak detection. From the inter-beat intervals, heart rate (hr) features including mean and standard deviation were derived. Heart rate variability (hrv) features were also computed, including: rmssd (root mean square of successive differences), pnn50 (percentage of intervals differing by more than 50 ms), tinn (triangular interpolation of NN interval histogram), and standard deviation. Frequency-domain HRV features were extracted across the following bands: ulf (0.01\u20130.04 Hz), lf (0.04\u20130.15 Hz), hf (0.15\u20130.4 Hz), and uhf (0.4\u20131.0 Hz). Additional features include total power, lf_hf_ratio, relative power (rel_ulf, rel_lf, rel_hf, rel_uhf), and normalized LF and HF (normalized_lf, normalized_hf)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EMG] [SYSTEM]
+You are chest_EMG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EMG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electromyogram (EMG, in mV) signals were collected from upper back muscles at 700 Hz. Two processing chains were used: a high-pass filter followed by 5-second windows for statistical and frequency features (mean, std, range, integral, percentiles, mean/median/peak frequency, band energy from 0\u2013350 Hz); and a low-pass filter over a 60-second window to extract peak-related features (count, amplitude stats, normalized sum). Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A high-pass filter was applied to remove the DC component. From the resulting signal, features were computed over 5-second windows: mean, standard deviation, dynamic range, absolute integral, median, 10th percentile, 90th percentile, and frequency-domain features including mean, median, and peak frequency. Additionally, spectral energy was calculated across seven equally spaced frequency bands from 0 to 350 Hz. In the second chain, a 50 Hz low-pass filter was applied to the raw EMG signal. From the filtered signal, using a 60-second window, the number of peaks, mean and standard deviation of peak amplitudes, sum of peak amplitudes, and normalized sum of peak amplitudes were computed."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EDA] [SYSTEM]
+You are chest_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded from the chest at 700 Hz and low-pass filtered at 5 Hz. Features were derived from both tonic (SCL) and phasic (SCR) components. Statistical features (mean, std, min, max, slope, dynamic range) were computed from the raw signal. From the decomposed signals, features include SCL-time correlation, SCR count, total magnitude and duration, area under the curve (AUC), and more. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_TEMP] [SYSTEM]
+You are chest_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 700 Hz from the chest. From the most recent 60-second window, statistical features were extracted including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_RESP] [SYSTEM]
+You are chest_RESP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_RESP modality, and you have the following information about the modality:
+{
+  "Data collection": "Respiration (RESP, in %) was measured using a plethysmograph at 700 Hz. A bandpass filter (0.1\u20130.35 Hz) was applied to identify inhale/exhale cycles. Features include durations and statistics (mean, std) of each phase, inhalation/exhalation ratio, stretch, inspiration volume, respiration rate, and total cycle duration. Features were extracted from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A bandpass filter with cutoff frequencies of 0.1 Hz and 0.35 Hz was applied to the raw respiration signal. A peak detection algorithm was then used to identify minima and maxima, allowing estimation of inhalation and exhalation durations. From these, the mean and standard deviation of inhale and exhale durations were computed, along with their ratio (inhale-to-exhale). Additional features include stretch (difference between maximum and minimum respiratory signal), inspiration volume (area under the inhalation curve), respiration rate (mean number of breaths per minute), and average respiration cycle duration."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_ACC] [SYSTEM]
+You are wrist_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Wrist-worn accelerometer (ACC, in 1/64 g) data was recorded at 32 Hz. Acceleration in three axes (x, y, z) and overall magnitude were used to compute features from the most recent 5-second window, including mean, std, absolute integral, and peak frequency per axis. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_BVP] [SYSTEM]
+You are wrist_BVP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_BVP modality, and you have the following information about the modality:
+{
+  "Data collection": "Blood volume pulse (BVP, unitless) was collected at 64 Hz from the wrist. Peak detection was applied to extract heartbeats, and from this, heart rate (HR) and heart rate variability (HRV) features were derived. Features include HRV statistics (mean, std, rmssd, tinn, pnn50) and spectral energy across standard frequency bands (ulf, lf, hf, uhf), as well as total power and ratios (e.g., lf_hf_ratio). Features were extracted from a 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Using peak detection on the raw PPG signal, heartbeat intervals were identified. The same set of hr and hrv features as for ECG were extracted, including: mean and standard deviation (std) of hr, rmssd, pnn50, tinn, frequency-domain energy in ulf, lf, hf, uhf bands, LF/HF ratio, total power, relative power per band, and normalized LF and HF components."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_EDA] [SYSTEM]
+You are wrist_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded at 4 Hz from the wrist. The signal was processed similarly to chest EDA, including low-pass filtering and decomposition into tonic (SCL) and phasic (SCR) components. Features were derived from both raw and decomposed signals, covering basic statistics, time correlation, SCR frequency, and area-based metrics. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_TEMP] [SYSTEM]
+You are wrist_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 4 Hz from the wrist. Statistical features were extracted from the most recent 60-second window, including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[SemanticFusionAgent] [SYSTEM]
+You are a fusion agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents based on their interpretations of different modalities.
+Your goal is to provide a final reasoned answer for the task.
+
+
+[StatisticalFusionAgent] [SYSTEM]
+You are a fusion agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents based on their interpretations of different modalities.
+Your goal is to provide a final reasoned answer for the task.
+
+
+[HybridFusionAgent] [SYSTEM]
+You are a coordinator agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents, each interpreting different modalities, as well as two fusion agents that have already aggregated these responses in different ways.
+Your goal is to coordinate the responses from the fusion agents and provide a final reasoned answer for the task.
+
+
+[chest_ACC] [SYSTEM]
+You are chest_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Physiological data was collected from a chest-worn accelerometer (ACC, in g), recording acceleration across three axes (x, y, z) and the overall magnitude at 700 Hz. Features were computed from the most recent 5-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_ECG] [SYSTEM]
+You are chest_ECG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ECG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrocardiogram (ECG, in mV) signals were recorded at 700 Hz using a chest-worn sensor. Heartbeats were detected via peak detection, and heart rate (hr) and heart rate variability (hrv) features were derived. Features include statistical measures (mean, std), time-domain HRV metrics (pnn50, tinn, rmssd), and frequency-domain components (ulf, lf, hf, uhf, total_power, lf_hf_ratio), along with their normalized and relative versions. Features were computed from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Heartbeats were detected via peak detection. From the inter-beat intervals, heart rate (hr) features including mean and standard deviation were derived. Heart rate variability (hrv) features were also computed, including: rmssd (root mean square of successive differences), pnn50 (percentage of intervals differing by more than 50 ms), tinn (triangular interpolation of NN interval histogram), and standard deviation. Frequency-domain HRV features were extracted across the following bands: ulf (0.01\u20130.04 Hz), lf (0.04\u20130.15 Hz), hf (0.15\u20130.4 Hz), and uhf (0.4\u20131.0 Hz). Additional features include total power, lf_hf_ratio, relative power (rel_ulf, rel_lf, rel_hf, rel_uhf), and normalized LF and HF (normalized_lf, normalized_hf)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EMG] [SYSTEM]
+You are chest_EMG agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EMG modality, and you have the following information about the modality:
+{
+  "Data collection": "Electromyogram (EMG, in mV) signals were collected from upper back muscles at 700 Hz. Two processing chains were used: a high-pass filter followed by 5-second windows for statistical and frequency features (mean, std, range, integral, percentiles, mean/median/peak frequency, band energy from 0\u2013350 Hz); and a low-pass filter over a 60-second window to extract peak-related features (count, amplitude stats, normalized sum). Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A high-pass filter was applied to remove the DC component. From the resulting signal, features were computed over 5-second windows: mean, standard deviation, dynamic range, absolute integral, median, 10th percentile, 90th percentile, and frequency-domain features including mean, median, and peak frequency. Additionally, spectral energy was calculated across seven equally spaced frequency bands from 0 to 350 Hz. In the second chain, a 50 Hz low-pass filter was applied to the raw EMG signal. From the filtered signal, using a 60-second window, the number of peaks, mean and standard deviation of peak amplitudes, sum of peak amplitudes, and normalized sum of peak amplitudes were computed."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EDA] [SYSTEM]
+You are chest_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded from the chest at 700 Hz and low-pass filtered at 5 Hz. Features were derived from both tonic (SCL) and phasic (SCR) components. Statistical features (mean, std, min, max, slope, dynamic range) were computed from the raw signal. From the decomposed signals, features include SCL-time correlation, SCR count, total magnitude and duration, area under the curve (AUC), and more. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_TEMP] [SYSTEM]
+You are chest_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 700 Hz from the chest. From the most recent 60-second window, statistical features were extracted including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_RESP] [SYSTEM]
+You are chest_RESP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_RESP modality, and you have the following information about the modality:
+{
+  "Data collection": "Respiration (RESP, in %) was measured using a plethysmograph at 700 Hz. A bandpass filter (0.1\u20130.35 Hz) was applied to identify inhale/exhale cycles. Features include durations and statistics (mean, std) of each phase, inhalation/exhalation ratio, stretch, inspiration volume, respiration rate, and total cycle duration. Features were extracted from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A bandpass filter with cutoff frequencies of 0.1 Hz and 0.35 Hz was applied to the raw respiration signal. A peak detection algorithm was then used to identify minima and maxima, allowing estimation of inhalation and exhalation durations. From these, the mean and standard deviation of inhale and exhale durations were computed, along with their ratio (inhale-to-exhale). Additional features include stretch (difference between maximum and minimum respiratory signal), inspiration volume (area under the inhalation curve), respiration rate (mean number of breaths per minute), and average respiration cycle duration."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_ACC] [SYSTEM]
+You are wrist_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Wrist-worn accelerometer (ACC, in 1/64 g) data was recorded at 32 Hz. Acceleration in three axes (x, y, z) and overall magnitude were used to compute features from the most recent 5-second window, including mean, std, absolute integral, and peak frequency per axis. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_BVP] [SYSTEM]
+You are wrist_BVP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_BVP modality, and you have the following information about the modality:
+{
+  "Data collection": "Blood volume pulse (BVP, unitless) was collected at 64 Hz from the wrist. Peak detection was applied to extract heartbeats, and from this, heart rate (HR) and heart rate variability (HRV) features were derived. Features include HRV statistics (mean, std, rmssd, tinn, pnn50) and spectral energy across standard frequency bands (ulf, lf, hf, uhf), as well as total power and ratios (e.g., lf_hf_ratio). Features were extracted from a 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "Using peak detection on the raw PPG signal, heartbeat intervals were identified. The same set of hr and hrv features as for ECG were extracted, including: mean and standard deviation (std) of hr, rmssd, pnn50, tinn, frequency-domain energy in ulf, lf, hf, uhf bands, LF/HF ratio, total power, relative power per band, and normalized LF and HF components."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_EDA] [SYSTEM]
+You are wrist_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded at 4 Hz from the wrist. The signal was processed similarly to chest EDA, including low-pass filtering and decomposition into tonic (SCL) and phasic (SCR) components. Features were derived from both raw and decomposed signals, covering basic statistics, time correlation, SCR frequency, and area-based metrics. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_TEMP] [SYSTEM]
+You are wrist_TEMP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_TEMP modality, and you have the following information about the modality:
+{
+  "Data collection": "Skin temperature (TEMP, in \u00b0C) was recorded at 4 Hz from the wrist. Statistical features were extracted from the most recent 60-second window, including mean, std, min, max, slope, and dynamic range. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The following statistical features were computed: mean, standard deviation, minimum, maximum, slope (rate of change over time), and dynamic range (max - min)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[SemanticFusionAgent] [SYSTEM]
+You are a fusion agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents based on their interpretations of different modalities.
+Your goal is to provide a final reasoned answer for the task.
+
+
+[StatisticalFusionAgent] [SYSTEM]
+You are a fusion agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents based on their interpretations of different modalities.
+Your goal is to provide a final reasoned answer for the task.
+
+
+[HybridFusionAgent] [SYSTEM]
+You are a coordinator agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents, each interpreting different modalities, as well as two fusion agents that have already aggregated these responses in different ways.
+Your goal is to coordinate the responses from the fusion agents and provide a final reasoned answer for the task.
+
+
+[chest_ACC] [HUMAN]
+You have received sensor features from chest_ACC modality:
+chest_ACC features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_ACC_x_mean: 0.88
+  - chest_ACC_x_std: 9.37e-03
+  - chest_ACC_x_peak_frequency: 0.02
+  - chest_ACC_x_absolute_integral: 52.54
+  - chest_ACC_y_mean: 0.05
+  - chest_ACC_y_std: 0.03
+  - chest_ACC_y_peak_frequency: 0.02
+  - chest_ACC_y_absolute_integral: 3.29
+  - chest_ACC_z_mean: -0.26
+  - chest_ACC_z_std: 0.02
+  - chest_ACC_z_peak_frequency: 0.02
+  - chest_ACC_z_absolute_integral: 15.80
+  - chest_ACC_mag_mean: 0.92
+  - chest_ACC_mag_std: 4.93e-03
+  - chest_ACC_mag_absolute_integral: 55.00
+
+*Example of stress*:
+  - chest_ACC_x_mean: 0.90
+  - chest_ACC_x_std: 0.02
+  - chest_ACC_x_peak_frequency: 0.02
+  - chest_ACC_x_absolute_integral: 53.85
+  - chest_ACC_y_mean: 0.01
+  - chest_ACC_y_std: 0.03
+  - chest_ACC_y_peak_frequency: 0.17
+  - chest_ACC_y_absolute_integral: 1.62
+  - chest_ACC_z_mean: -0.18
+  - chest_ACC_z_std: 0.05
+  - chest_ACC_z_peak_frequency: 0.02
+  - chest_ACC_z_absolute_integral: 10.97
+  - chest_ACC_mag_mean: 0.92
+  - chest_ACC_mag_std: 0.02
+  - chest_ACC_mag_absolute_integral: 55.08
+
+*Example of amusement*:
+  - chest_ACC_x_mean: 0.85
+  - chest_ACC_x_std: 7.54e-03
+  - chest_ACC_x_peak_frequency: 0.03
+  - chest_ACC_x_absolute_integral: 51.01
+  - chest_ACC_y_mean: 4.04e-03
+  - chest_ACC_y_std: 3.77e-03
+  - chest_ACC_y_peak_frequency: 0.02
+  - chest_ACC_y_absolute_integral: 0.27
+  - chest_ACC_z_mean: -0.36
+  - chest_ACC_z_std: 0.02
+  - chest_ACC_z_peak_frequency: 0.03
+  - chest_ACC_z_absolute_integral: 21.87
+  - chest_ACC_mag_mean: 0.93
+  - chest_ACC_mag_std: 5.85e-03
+  - chest_ACC_mag_absolute_integral: 55.51
+
+**Current sample features**:
+  - chest_ACC_x_mean: 0.85
+  - chest_ACC_x_std: 0.01
+  - chest_ACC_x_peak_frequency: 0.03
+  - chest_ACC_x_absolute_integral: 51.15
+  - chest_ACC_y_mean: 9.67e-03
+  - chest_ACC_y_std: 9.23e-03
+  - chest_ACC_y_peak_frequency: 0.02
+  - chest_ACC_y_absolute_integral: 0.71
+  - chest_ACC_z_mean: -0.36
+  - chest_ACC_z_std: 0.02
+  - chest_ACC_z_peak_frequency: 0.03
+  - chest_ACC_z_absolute_integral: 21.40
+  - chest_ACC_mag_mean: 0.92
+  - chest_ACC_mag_std: 8.22e-03
+  - chest_ACC_mag_absolute_integral: 55.47
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_ACC] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' example, as the standard deviations for the x and y axes are relatively low, and the peak frequencies for the x and z axes are higher compared to the 'amusement' example. However, the absolute integrals for the x and z axes are also relatively low, which is more in line with the 'amusement' example. Additionally, the mean values for the x and z axes are also closer to the 'amusement' example. Considering the provided examples and the current sample features, the most likely emotional state is 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+
+[chest_ECG] [HUMAN]
+You have received sensor features from chest_ECG modality:
+chest_ECG features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_ECG_hr_mean: 71.05
+  - chest_ECG_hr_std: 4.97
+  - chest_ECG_hrv_mean: 848.80
+  - chest_ECG_hrv_std: 62.79
+  - chest_ECG_hrv_pnn50: 36.23
+  - chest_ECG_hrv_tinn: 78.12
+  - chest_ECG_hrv_rmssd: 60.33
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 0.02
+  - chest_ECG_hrv_hf: 0.08
+  - chest_ECG_hrv_uhf: 1.68e-03
+  - chest_ECG_hrv_lf_hf_ratio: 0.29
+  - chest_ECG_hrv_total_power: 0.10
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.22
+  - chest_ECG_hrv_rel_hf: 0.76
+  - chest_ECG_hrv_rel_uhf: 0.02
+  - chest_ECG_hrv_normalized_lf: 0.22
+  - chest_ECG_hrv_normalized_hf: 0.76
+
+*Example of stress*:
+  - chest_ECG_hr_mean: 119.43
+  - chest_ECG_hr_std: 6.74
+  - chest_ECG_hrv_mean: 504.00
+  - chest_ECG_hrv_std: 29.35
+  - chest_ECG_hrv_pnn50: 0.00e+00
+  - chest_ECG_hrv_tinn: 54.69
+  - chest_ECG_hrv_rmssd: 8.80
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 7.26e-03
+  - chest_ECG_hrv_hf: 5.56e-03
+  - chest_ECG_hrv_uhf: 2.53e-04
+  - chest_ECG_hrv_lf_hf_ratio: 1.31
+  - chest_ECG_hrv_total_power: 0.01
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.56
+  - chest_ECG_hrv_rel_hf: 0.43
+  - chest_ECG_hrv_rel_uhf: 0.02
+  - chest_ECG_hrv_normalized_lf: 0.56
+  - chest_ECG_hrv_normalized_hf: 0.43
+
+*Example of amusement*:
+  - chest_ECG_hr_mean: 73.79
+  - chest_ECG_hr_std: 6.02
+  - chest_ECG_hrv_mean: 818.67
+  - chest_ECG_hrv_std: 69.15
+  - chest_ECG_hrv_pnn50: 16.67
+  - chest_ECG_hrv_tinn: 156.25
+  - chest_ECG_hrv_rmssd: 38.73
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 0.04
+  - chest_ECG_hrv_hf: 0.02
+  - chest_ECG_hrv_uhf: 1.96e-03
+  - chest_ECG_hrv_lf_hf_ratio: 1.91
+  - chest_ECG_hrv_total_power: 0.06
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.64
+  - chest_ECG_hrv_rel_hf: 0.33
+  - chest_ECG_hrv_rel_uhf: 0.03
+  - chest_ECG_hrv_normalized_lf: 0.64
+  - chest_ECG_hrv_normalized_hf: 0.33
+
+**Current sample features**:
+  - chest_ECG_hr_mean: 77.88
+  - chest_ECG_hr_std: 9.51
+  - chest_ECG_hrv_mean: 782.38
+  - chest_ECG_hrv_std: 100.12
+  - chest_ECG_hrv_pnn50: 30.67
+  - chest_ECG_hrv_tinn: 101.56
+  - chest_ECG_hrv_rmssd: 56.89
+  - chest_ECG_hrv_ulf: nan
+  - chest_ECG_hrv_lf: 0.06
+  - chest_ECG_hrv_hf: 6.27e-03
+  - chest_ECG_hrv_uhf: 6.71e-04
+  - chest_ECG_hrv_lf_hf_ratio: 8.90
+  - chest_ECG_hrv_total_power: 0.06
+  - chest_ECG_hrv_rel_ulf: nan
+  - chest_ECG_hrv_rel_lf: 0.89
+  - chest_ECG_hrv_rel_hf: 0.10
+  - chest_ECG_hrv_rel_uhf: 0.01
+  - chest_ECG_hrv_normalized_lf: 0.89
+  - chest_ECG_hrv_normalized_hf: 0.10
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_ECG] [AI]
+{
+  "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a higher heart rate mean (77.88) and a higher LF/HF ratio (8.90) compared to the baseline example. The LF/HF ratio is particularly high, which is more indicative of the amusement state. Additionally, the current sample features have a higher LF component (0.06) and a lower HF component (6.27e-03) compared to the stress example. These characteristics are more consistent with the amusement state.",
+  "ANSWER": "amusement"
+}
+
+
+[chest_EMG] [HUMAN]
+You have received sensor features from chest_EMG modality:
+chest_EMG features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_EMG_mean: 1.30e-06
+  - chest_EMG_std: 4.65e-03
+  - chest_EMG_dynamic_range: 0.04
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 3.53e-05
+  - chest_EMG_10th_percentile: -6.06e-03
+  - chest_EMG_90th_percentile: 5.73e-03
+  - chest_EMG_mean_freq: 188.93
+  - chest_EMG_median_freq: 173.50
+  - chest_EMG_peak_freq: 119.00
+  - chest_EMG_band1_energy: 2.62e-11
+  - chest_EMG_band2_energy: 1.41e-06
+  - chest_EMG_band3_energy: 1.47e-05
+  - chest_EMG_band4_energy: 1.15e-05
+  - chest_EMG_band5_energy: 7.11e-06
+  - chest_EMG_band6_energy: 5.11e-06
+  - chest_EMG_band7_energy: 4.09e-06
+  - chest_EMG_num_peaks: 2427
+  - chest_EMG_peak_amplitude_mean: 1.77e-05
+  - chest_EMG_peak_amplitude_std: 6.90e-06
+  - chest_EMG_peak_amplitude_sum: 0.04
+  - chest_EMG_peak_amplitude_norm_sum: 0.12
+
+*Example of stress*:
+  - chest_EMG_mean: 2.35e-06
+  - chest_EMG_std: 7.15e-03
+  - chest_EMG_dynamic_range: 0.06
+  - chest_EMG_absolute_integral: 0.03
+  - chest_EMG_median: 8.32e-05
+  - chest_EMG_10th_percentile: -8.83e-03
+  - chest_EMG_90th_percentile: 9.00e-03
+  - chest_EMG_mean_freq: 207.15
+  - chest_EMG_median_freq: 194.50
+  - chest_EMG_peak_freq: 119.50
+  - chest_EMG_band1_energy: 2.02e-10
+  - chest_EMG_band2_energy: 2.97e-06
+  - chest_EMG_band3_energy: 2.41e-05
+  - chest_EMG_band4_energy: 2.31e-05
+  - chest_EMG_band5_energy: 1.68e-05
+  - chest_EMG_band6_energy: 1.60e-05
+  - chest_EMG_band7_energy: 1.47e-05
+  - chest_EMG_num_peaks: 1744
+  - chest_EMG_peak_amplitude_mean: 2.87e-05
+  - chest_EMG_peak_amplitude_std: 1.32e-05
+  - chest_EMG_peak_amplitude_sum: 0.05
+  - chest_EMG_peak_amplitude_norm_sum: 0.10
+
+*Example of amusement*:
+  - chest_EMG_mean: 1.99e-06
+  - chest_EMG_std: 5.20e-03
+  - chest_EMG_dynamic_range: 0.04
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 2.61e-04
+  - chest_EMG_10th_percentile: -6.94e-03
+  - chest_EMG_90th_percentile: 6.46e-03
+  - chest_EMG_mean_freq: 222.11
+  - chest_EMG_median_freq: 216.50
+  - chest_EMG_peak_freq: 157.50
+  - chest_EMG_band1_energy: 5.20e-11
+  - chest_EMG_band2_energy: 4.41e-07
+  - chest_EMG_band3_energy: 1.00e-05
+  - chest_EMG_band4_energy: 1.22e-05
+  - chest_EMG_band5_energy: 8.32e-06
+  - chest_EMG_band6_energy: 8.91e-06
+  - chest_EMG_band7_energy: 1.09e-05
+  - chest_EMG_num_peaks: 2600
+  - chest_EMG_peak_amplitude_mean: 9.83e-06
+  - chest_EMG_peak_amplitude_std: 3.19e-06
+  - chest_EMG_peak_amplitude_sum: 0.03
+  - chest_EMG_peak_amplitude_norm_sum: 0.13
+
+**Current sample features**:
+  - chest_EMG_mean: -1.39e-06
+  - chest_EMG_std: 5.19e-03
+  - chest_EMG_dynamic_range: 0.04
+  - chest_EMG_absolute_integral: 0.02
+  - chest_EMG_median: 3.70e-04
+  - chest_EMG_10th_percentile: -7.22e-03
+  - chest_EMG_90th_percentile: 6.58e-03
+  - chest_EMG_mean_freq: 236.26
+  - chest_EMG_median_freq: 238.00
+  - chest_EMG_peak_freq: 336.00
+  - chest_EMG_band1_energy: 3.34e-11
+  - chest_EMG_band2_energy: 3.97e-07
+  - chest_EMG_band3_energy: 6.91e-06
+  - chest_EMG_band4_energy: 1.17e-05
+  - chest_EMG_band5_energy: 1.06e-05
+  - chest_EMG_band6_energy: 1.05e-05
+  - chest_EMG_band7_energy: 1.38e-05
+  - chest_EMG_num_peaks: 2138
+  - chest_EMG_peak_amplitude_mean: 1.13e-05
+  - chest_EMG_peak_amplitude_std: 6.89e-06
+  - chest_EMG_peak_amplitude_sum: 0.02
+  - chest_EMG_peak_amplitude_norm_sum: 0.12
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_EMG] [AI]
+{
+  "REASON": "Comparing the current sample features with the examples provided, we can observe that the current sample features have a higher mean frequency (chest_EMG_mean_freq: 236.26) and peak frequency (chest_EMG_peak_freq: 336.00) compared to the baseline example. Additionally, the current sample features have a higher number of peaks (chest_EMG_num_peaks: 2138) and a higher normalized sum of peak amplitudes (chest_EMG_peak_amplitude_norm_sum: 0.12) compared to the baseline example. These characteristics are more similar to the stress and amusement examples. However, the current sample features have a lower mean amplitude (chest_EMG_mean: -1.39e-06) and a lower standard deviation (chest_EMG_std: 5.19e-03) compared to the stress example. Considering these factors, the current sample features seem to be more indicative of the amusement category.",
+  "ANSWER": "amusement"
+}
+
+
+[chest_EDA] [HUMAN]
+You have received sensor features from chest_EDA modality:
+chest_EDA features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_EDA_mean: 6.12
+  - chest_EDA_std: 0.01
+  - chest_EDA_min: 6.09
+  - chest_EDA_max: 6.14
+  - chest_EDA_slope: -6.76e-08
+  - chest_EDA_dynamic_range: 0.05
+  - chest_EDA_scl_mean: 6.12
+  - chest_EDA_scl_std: 0.01
+  - chest_EDA_scr_mean: -1.33e-05
+  - chest_EDA_scr_std: 3.19e-03
+  - chest_EDA_scl_time_corr: -0.49
+  - chest_EDA_scr_num_segments: 0
+  - chest_EDA_scr_sum_magnitudes: 0.00e+00
+  - chest_EDA_scr_total_duration: 18.53
+  - chest_EDA_scr_auc: 0.07
+
+*Example of stress*:
+  - chest_EDA_mean: 6.86
+  - chest_EDA_std: 0.03
+  - chest_EDA_min: 6.81
+  - chest_EDA_max: 6.92
+  - chest_EDA_slope: 2.15e-06
+  - chest_EDA_dynamic_range: 0.12
+  - chest_EDA_scl_mean: 6.86
+  - chest_EDA_scl_std: 0.03
+  - chest_EDA_scr_mean: -1.51e-04
+  - chest_EDA_scr_std: 8.96e-03
+  - chest_EDA_scl_time_corr: 0.94
+  - chest_EDA_scr_num_segments: 6
+  - chest_EDA_scr_sum_magnitudes: 0.10
+  - chest_EDA_scr_total_duration: 18.16
+  - chest_EDA_scr_auc: 0.20
+
+*Example of amusement*:
+  - chest_EDA_mean: 6.31
+  - chest_EDA_std: 8.91e-03
+  - chest_EDA_min: 6.30
+  - chest_EDA_max: 6.35
+  - chest_EDA_slope: -1.62e-07
+  - chest_EDA_dynamic_range: 0.06
+  - chest_EDA_scl_mean: 6.31
+  - chest_EDA_scl_std: 6.32e-03
+  - chest_EDA_scr_mean: -5.99e-05
+  - chest_EDA_scr_std: 4.90e-03
+  - chest_EDA_scl_time_corr: 0.44
+  - chest_EDA_scr_num_segments: 1
+  - chest_EDA_scr_sum_magnitudes: 0.03
+  - chest_EDA_scr_total_duration: 10.21
+  - chest_EDA_scr_auc: 0.10
+
+**Current sample features**:
+  - chest_EDA_mean: 6.31
+  - chest_EDA_std: 0.01
+  - chest_EDA_min: 6.29
+  - chest_EDA_max: 6.35
+  - chest_EDA_slope: -7.61e-07
+  - chest_EDA_dynamic_range: 0.06
+  - chest_EDA_scl_mean: 6.31
+  - chest_EDA_scl_std: 7.63e-03
+  - chest_EDA_scr_mean: 6.64e-05
+  - chest_EDA_scr_std: 5.94e-03
+  - chest_EDA_scl_time_corr: 4.39e-03
+  - chest_EDA_scr_num_segments: 5
+  - chest_EDA_scr_sum_magnitudes: 0.08
+  - chest_EDA_scr_total_duration: 12.64
+  - chest_EDA_scr_auc: 0.14
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_EDA] [AI]
+{
+  "REASON": "Based on the provided features, the current sample features seem to be most similar to the 'amusement' example. The mean and standard deviation of the EDA signal are close to the 'amusement' example, and the number of SCR events and the sum of SCR magnitudes are also similar. Additionally, the area under the SCR curve is relatively high, which is consistent with the 'amusement' example. However, the correlation between SCL and time is very low, which is not typical for the 'amusement' example. Considering the provided examples and the current sample features, I would reason that the current sample is most likely to be 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+
+[chest_TEMP] [HUMAN]
+You have received sensor features from chest_TEMP modality:
+chest_TEMP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_TEMP_mean: 34.69
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.59
+  - chest_TEMP_max: 34.82
+  - chest_TEMP_slope: 4.76e-07
+
+*Example of stress*:
+  - chest_TEMP_mean: 34.57
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.46
+  - chest_TEMP_max: 34.71
+  - chest_TEMP_slope: 1.02e-06
+
+*Example of amusement*:
+  - chest_TEMP_mean: 34.97
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.86
+  - chest_TEMP_max: 35.11
+  - chest_TEMP_slope: -9.93e-07
+
+**Current sample features**:
+  - chest_TEMP_mean: 34.99
+  - chest_TEMP_std: 0.03
+  - chest_TEMP_min: 34.88
+  - chest_TEMP_max: 35.13
+  - chest_TEMP_slope: 1.10e-06
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_TEMP] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'amusement' category, as the mean skin temperature (chest_TEMP_mean) is higher (34.99) compared to the 'stress' example (34.57), and the dynamic range (chest_TEMP_max - chest_TEMP_min) is also higher (0.25) compared to the 'stress' example (0.25). Although the slope (chest_TEMP_slope) is similar to the 'stress' example, the overall pattern of the features suggests a positive emotional state, which is more characteristic of the 'amusement' category.",
+  "ANSWER": "amusement"
+}
+
+
+[chest_RESP] [HUMAN]
+You have received sensor features from chest_RESP modality:
+chest_RESP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_RESP_inhale_duration_mean: 1.73
+  - chest_RESP_inhale_duration_std: 0.11
+  - chest_RESP_exhale_duration_mean: 1.73
+  - chest_RESP_exhale_duration_std: 0.11
+  - chest_RESP_inhale_exhale_ratio: 1.00
+  - chest_RESP_stretch: 6.76
+  - chest_RESP_inspiration_volume: 126.13
+  - chest_RESP_respiration_rate: 17.49
+  - chest_RESP_respiration_duration: 3.45
+
+*Example of stress*:
+  - chest_RESP_inhale_duration_mean: 1.92
+  - chest_RESP_inhale_duration_std: 0.62
+  - chest_RESP_exhale_duration_mean: 2.14
+  - chest_RESP_exhale_duration_std: 0.81
+  - chest_RESP_inhale_exhale_ratio: 0.90
+  - chest_RESP_stretch: 10.61
+  - chest_RESP_inspiration_volume: 114.27
+  - chest_RESP_respiration_rate: 13.93
+  - chest_RESP_respiration_duration: 4.04
+
+*Example of amusement*:
+  - chest_RESP_inhale_duration_mean: 1.85
+  - chest_RESP_inhale_duration_std: 0.30
+  - chest_RESP_exhale_duration_mean: 1.78
+  - chest_RESP_exhale_duration_std: 0.30
+  - chest_RESP_inhale_exhale_ratio: 1.04
+  - chest_RESP_stretch: 14.95
+  - chest_RESP_inspiration_volume: 145.91
+  - chest_RESP_respiration_rate: 16.41
+  - chest_RESP_respiration_duration: 3.61
+
+**Current sample features**:
+  - chest_RESP_inhale_duration_mean: 2.74
+  - chest_RESP_inhale_duration_std: 1.14
+  - chest_RESP_exhale_duration_mean: 2.70
+  - chest_RESP_exhale_duration_std: 1.21
+  - chest_RESP_inhale_exhale_ratio: 1.01
+  - chest_RESP_stretch: 21.21
+  - chest_RESP_inspiration_volume: 251.28
+  - chest_RESP_respiration_rate: 11.23
+  - chest_RESP_respiration_duration: 5.55
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_RESP] [AI]
+{
+  "REASON": "Based on the provided sensor features, the current sample features show a higher respiration rate (11.23) and a longer respiration duration (5.55) compared to the examples of baseline and amusement. The inhale and exhale duration means and standard deviations are also higher than the baseline example, but lower than the stress example. The inhale-exhale ratio is close to 1, which is similar to the baseline and amusement examples. However, the stretch value (21.21) is higher than all the examples, which might indicate a more intense emotional state. Considering these factors, the current sample features seem to be more similar to the stress example, but with some differences. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in features.",
+  "ANSWER": "stress"
+}
+
+
+[wrist_ACC] [HUMAN]
+You have received sensor features from wrist_ACC modality:
+wrist_ACC features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_ACC_x_mean: -52.28
+  - wrist_ACC_x_std: 1.97
+  - wrist_ACC_x_peak_frequency: 0.02
+  - wrist_ACC_x_absolute_integral: 3137.03
+  - wrist_ACC_y_mean: -3.85
+  - wrist_ACC_y_std: 17.67
+  - wrist_ACC_y_peak_frequency: 0.02
+  - wrist_ACC_y_absolute_integral: 1077.56
+  - wrist_ACC_z_mean: 33.06
+  - wrist_ACC_z_std: 2.36
+  - wrist_ACC_z_peak_frequency: 0.02
+  - wrist_ACC_z_absolute_integral: 1983.78
+  - wrist_ACC_mag_mean: 64.50
+  - wrist_ACC_mag_std: 1.64
+  - wrist_ACC_mag_absolute_integral: 3870.22
+
+*Example of stress*:
+  - wrist_ACC_x_mean: -36.99
+  - wrist_ACC_x_std: 15.05
+  - wrist_ACC_x_peak_frequency: 0.10
+  - wrist_ACC_x_absolute_integral: 2232.16
+  - wrist_ACC_y_mean: 6.74
+  - wrist_ACC_y_std: 12.67
+  - wrist_ACC_y_peak_frequency: 0.02
+  - wrist_ACC_y_absolute_integral: 755.66
+  - wrist_ACC_z_mean: -49.49
+  - wrist_ACC_z_std: 13.60
+  - wrist_ACC_z_peak_frequency: 0.10
+  - wrist_ACC_z_absolute_integral: 2976.66
+  - wrist_ACC_mag_mean: 65.70
+  - wrist_ACC_mag_std: 10.90
+  - wrist_ACC_mag_absolute_integral: 3942.12
+
+*Example of amusement*:
+  - wrist_ACC_x_mean: -6.21
+  - wrist_ACC_x_std: 0.51
+  - wrist_ACC_x_peak_frequency: 0.02
+  - wrist_ACC_x_absolute_integral: 372.44
+  - wrist_ACC_y_mean: -6.01
+  - wrist_ACC_y_std: 0.09
+  - wrist_ACC_y_peak_frequency: 0.02
+  - wrist_ACC_y_absolute_integral: 360.53
+  - wrist_ACC_z_mean: 62.32
+  - wrist_ACC_z_std: 0.48
+  - wrist_ACC_z_peak_frequency: 7.57
+  - wrist_ACC_z_absolute_integral: 3739.00
+  - wrist_ACC_mag_mean: 62.91
+  - wrist_ACC_mag_std: 0.46
+  - wrist_ACC_mag_absolute_integral: 3774.89
+
+**Current sample features**:
+  - wrist_ACC_x_mean: 1.74
+  - wrist_ACC_x_std: 6.91
+  - wrist_ACC_x_peak_frequency: 0.02
+  - wrist_ACC_x_absolute_integral: 394.88
+  - wrist_ACC_y_mean: -38.62
+  - wrist_ACC_y_std: 22.95
+  - wrist_ACC_y_peak_frequency: 0.02
+  - wrist_ACC_y_absolute_integral: 2317.25
+  - wrist_ACC_z_mean: 40.20
+  - wrist_ACC_z_std: 15.79
+  - wrist_ACC_z_peak_frequency: 0.02
+  - wrist_ACC_z_absolute_integral: 2411.75
+  - wrist_ACC_mag_mean: 62.71
+  - wrist_ACC_mag_std: 1.26
+  - wrist_ACC_mag_absolute_integral: 3762.46
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_ACC] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' category. The mean and standard deviation values for the x, y, and z axes are relatively low, indicating less movement. The peak frequency values are also low, suggesting a more stable and calm state. Additionally, the absolute integral values for the x, y, and z axes are relatively low, which is consistent with the 'amusement' category. However, it's essential to note that the sensor features might be wrong due to data collection or processing.",
+  "ANSWER": "amusement"
+}
+
+
+[wrist_BVP] [HUMAN]
+You have received sensor features from wrist_BVP modality:
+wrist_BVP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_BVP_hr_mean: 72.47
+  - wrist_BVP_hr_std: 11.64
+  - wrist_BVP_hrv_mean: 849.41
+  - wrist_BVP_hrv_std: 138.93
+  - wrist_BVP_hrv_pnn50: 72.46
+  - wrist_BVP_hrv_tinn: 203.12
+  - wrist_BVP_hrv_rmssd: 219.22
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.01
+  - wrist_BVP_hrv_hf: 0.08
+  - wrist_BVP_hrv_uhf: 0.07
+  - wrist_BVP_hrv_lf_hf_ratio: 0.13
+  - wrist_BVP_hrv_total_power: 0.16
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.06
+  - wrist_BVP_hrv_rel_hf: 0.48
+  - wrist_BVP_hrv_rel_uhf: 0.45
+  - wrist_BVP_hrv_normalized_lf: 0.06
+  - wrist_BVP_hrv_normalized_hf: 0.48
+
+*Example of stress*:
+  - wrist_BVP_hr_mean: 71.59
+  - wrist_BVP_hr_std: 35.81
+  - wrist_BVP_hrv_mean: 1169.06
+  - wrist_BVP_hrv_std: 932.64
+  - wrist_BVP_hrv_pnn50: 88.00
+  - wrist_BVP_hrv_tinn: 515.62
+  - wrist_BVP_hrv_rmssd: 1110.82
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.04
+  - wrist_BVP_hrv_hf: 6.45e-03
+  - wrist_BVP_hrv_uhf: 2.19e-04
+  - wrist_BVP_hrv_lf_hf_ratio: 6.16
+  - wrist_BVP_hrv_total_power: 0.05
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.86
+  - wrist_BVP_hrv_rel_hf: 0.14
+  - wrist_BVP_hrv_rel_uhf: 4.72e-03
+  - wrist_BVP_hrv_normalized_lf: 0.86
+  - wrist_BVP_hrv_normalized_hf: 0.14
+
+*Example of amusement*:
+  - wrist_BVP_hr_mean: 74.23
+  - wrist_BVP_hr_std: 11.12
+  - wrist_BVP_hrv_mean: 825.26
+  - wrist_BVP_hrv_std: 117.32
+  - wrist_BVP_hrv_pnn50: 64.79
+  - wrist_BVP_hrv_tinn: 265.62
+  - wrist_BVP_hrv_rmssd: 157.15
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.05
+  - wrist_BVP_hrv_hf: 0.08
+  - wrist_BVP_hrv_uhf: 0.05
+  - wrist_BVP_hrv_lf_hf_ratio: 0.59
+  - wrist_BVP_hrv_total_power: 0.18
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.27
+  - wrist_BVP_hrv_rel_hf: 0.46
+  - wrist_BVP_hrv_rel_uhf: 0.27
+  - wrist_BVP_hrv_normalized_lf: 0.27
+  - wrist_BVP_hrv_normalized_hf: 0.46
+
+**Current sample features**:
+  - wrist_BVP_hr_mean: 79.19
+  - wrist_BVP_hr_std: 20.77
+  - wrist_BVP_hrv_mean: 846.24
+  - wrist_BVP_hrv_std: 537.93
+  - wrist_BVP_hrv_pnn50: 71.01
+  - wrist_BVP_hrv_tinn: 406.25
+  - wrist_BVP_hrv_rmssd: 768.58
+  - wrist_BVP_hrv_ulf: nan
+  - wrist_BVP_hrv_lf: 0.05
+  - wrist_BVP_hrv_hf: 0.02
+  - wrist_BVP_hrv_uhf: 1.23e-03
+  - wrist_BVP_hrv_lf_hf_ratio: 2.15
+  - wrist_BVP_hrv_total_power: 0.07
+  - wrist_BVP_hrv_rel_ulf: nan
+  - wrist_BVP_hrv_rel_lf: 0.67
+  - wrist_BVP_hrv_rel_hf: 0.31
+  - wrist_BVP_hrv_rel_uhf: 0.02
+  - wrist_BVP_hrv_normalized_lf: 0.67
+  - wrist_BVP_hrv_normalized_hf: 0.31
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_BVP] [AI]
+{
+  "REASON": "Based on the provided examples and the current sample features, the 'hr_mean' and 'hr_std' values for the current sample (79.19 and 20.77, respectively) are higher than the 'stress' example (71.59 and 35.81, respectively) but lower than the 'amusement' example (74.23 and 11.12, respectively). The 'hrv_mean' and 'hrv_std' values for the current sample (846.24 and 537.93, respectively) are also higher than the 'stress' example (1169.06 and 932.64, respectively) but lower than the 'amusement' example (825.26 and 117.32, respectively). The 'lf_hf_ratio' value for the current sample (2.15) is higher than the 'stress' example (6.16) and lower than the 'amusement' example (0.59). Considering these differences, the current sample features seem to be more similar to the 'stress' example than the 'amusement' example, but the 'hrv_std' value is higher than the 'stress' example, which might indicate a different emotional state. However, the 'hrv_std' value is also higher than the 'baseline' example, which might indicate a stressed state. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in the features.",
+  "ANSWER": "stress"
+}
+
+
+[wrist_EDA] [HUMAN]
+You have received sensor features from wrist_EDA modality:
+wrist_EDA features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_EDA_mean: 2.48
+  - wrist_EDA_std: 0.03
+  - wrist_EDA_min: 2.42
+  - wrist_EDA_max: 2.51
+  - wrist_EDA_slope: -3.04e-04
+  - wrist_EDA_dynamic_range: 0.09
+  - wrist_EDA_scl_mean: 2.48
+  - wrist_EDA_scl_std: 0.02
+  - wrist_EDA_scr_mean: 1.89e-04
+  - wrist_EDA_scr_std: 6.61e-03
+  - wrist_EDA_scl_time_corr: -0.98
+  - wrist_EDA_scr_num_segments: 7
+  - wrist_EDA_scr_sum_magnitudes: 0.08
+  - wrist_EDA_scr_total_duration: 11.50
+  - wrist_EDA_scr_auc: 0.14
+
+*Example of stress*:
+  - wrist_EDA_mean: 2.93
+  - wrist_EDA_std: 0.21
+  - wrist_EDA_min: 2.66
+  - wrist_EDA_max: 3.26
+  - wrist_EDA_slope: -1.55e-04
+  - wrist_EDA_dynamic_range: 0.60
+  - wrist_EDA_scl_mean: 2.93
+  - wrist_EDA_scl_std: 0.18
+  - wrist_EDA_scr_mean: -7.16e-05
+  - wrist_EDA_scr_std: 0.09
+  - wrist_EDA_scl_time_corr: 0.09
+  - wrist_EDA_scr_num_segments: 23
+  - wrist_EDA_scr_sum_magnitudes: 1.68
+  - wrist_EDA_scr_total_duration: 10.50
+  - wrist_EDA_scr_auc: 1.84
+
+*Example of amusement*:
+  - wrist_EDA_mean: 2.67
+  - wrist_EDA_std: 0.02
+  - wrist_EDA_min: 2.63
+  - wrist_EDA_max: 2.70
+  - wrist_EDA_slope: -2.29e-04
+  - wrist_EDA_dynamic_range: 0.07
+  - wrist_EDA_scl_mean: 2.67
+  - wrist_EDA_scl_std: 0.02
+  - wrist_EDA_scr_mean: -8.92e-05
+  - wrist_EDA_scr_std: 4.17e-03
+  - wrist_EDA_scl_time_corr: -0.96
+  - wrist_EDA_scr_num_segments: 1
+  - wrist_EDA_scr_sum_magnitudes: 0.02
+  - wrist_EDA_scr_total_duration: 18.75
+  - wrist_EDA_scr_auc: 0.09
+
+**Current sample features**:
+  - wrist_EDA_mean: 2.56
+  - wrist_EDA_std: 0.06
+  - wrist_EDA_min: 2.44
+  - wrist_EDA_max: 2.65
+  - wrist_EDA_slope: -7.37e-04
+  - wrist_EDA_dynamic_range: 0.21
+  - wrist_EDA_scl_mean: 2.56
+  - wrist_EDA_scl_std: 0.06
+  - wrist_EDA_scr_mean: 7.61e-05
+  - wrist_EDA_scr_std: 0.01
+  - wrist_EDA_scl_time_corr: -0.98
+  - wrist_EDA_scr_num_segments: 6
+  - wrist_EDA_scr_sum_magnitudes: 0.18
+  - wrist_EDA_scr_total_duration: 5.75
+  - wrist_EDA_scr_auc: 0.16
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_EDA] [AI]
+{
+  "REASON": "Based on the provided features, the current sample features are most similar to the example of 'baseline'. The mean and standard deviation of the EDA signal are close to the baseline example, and the slope and dynamic range are also within a similar range. Additionally, the number of SCR events and the area under the SCR curve are relatively low, which is consistent with the baseline condition. Although the features are not identical to the baseline example, they are closer to the baseline than to the stress or amusement examples.",
+  "ANSWER": "baseline"
+}
+
+
+[wrist_TEMP] [HUMAN]
+You have received sensor features from wrist_TEMP modality:
+wrist_TEMP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_TEMP_mean: 34.41
+  - wrist_TEMP_std: 0.02
+  - wrist_TEMP_min: 34.37
+  - wrist_TEMP_max: 34.45
+  - wrist_TEMP_slope: 1.67e-04
+
+*Example of stress*:
+  - wrist_TEMP_mean: 33.18
+  - wrist_TEMP_std: 0.03
+  - wrist_TEMP_min: 33.13
+  - wrist_TEMP_max: 33.25
+  - wrist_TEMP_slope: -4.17e-04
+
+*Example of amusement*:
+  - wrist_TEMP_mean: 31.70
+  - wrist_TEMP_std: 0.02
+  - wrist_TEMP_min: 31.65
+  - wrist_TEMP_max: 31.75
+  - wrist_TEMP_slope: 2.50e-04
+
+**Current sample features**:
+  - wrist_TEMP_mean: 31.76
+  - wrist_TEMP_std: 0.02
+  - wrist_TEMP_min: 31.71
+  - wrist_TEMP_max: 31.81
+  - wrist_TEMP_slope: 2.50e-04
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_TEMP] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be most similar to the 'amusement' example. The mean skin temperature (wrist_TEMP_mean) is 31.76, which is close to the 'amusement' example (31.70). The standard deviation (wrist_TEMP_std) is 0.02, which is also similar to the 'amusement' example (0.02). Additionally, the slope (wrist_TEMP_slope) is 2.50e-04, which is the same as the 'amusement' example. Although the current sample features are not identical to the 'amusement' example, they are more similar to it compared to the 'baseline' and 'stress' examples.",
+  "ANSWER": "amusement"
+}
+
+
+[SemanticFusionAgent] [HUMAN]
+You have received responses from multiple sensing agents:
+{
+  "chest_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' example, as the standard deviations for the x and y axes are relatively low, and the peak frequencies for the x and z axes are higher compared to the 'amusement' example. However, the absolute integrals for the x and z axes are also relatively low, which is more in line with the 'amusement' example. Additionally, the mean values for the x and z axes are also closer to the 'amusement' example. Considering the provided examples and the current sample features, the most likely emotional state is 'amusement'."
+  },
+  "chest_ECG": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a higher heart rate mean (77.88) and a higher LF/HF ratio (8.90) compared to the baseline example. The LF/HF ratio is particularly high, which is more indicative of the amusement state. Additionally, the current sample features have a higher LF component (0.06) and a lower HF component (6.27e-03) compared to the stress example. These characteristics are more consistent with the amusement state."
+  },
+  "chest_EDA": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided features, the current sample features seem to be most similar to the 'amusement' example. The mean and standard deviation of the EDA signal are close to the 'amusement' example, and the number of SCR events and the sum of SCR magnitudes are also similar. Additionally, the area under the SCR curve is relatively high, which is consistent with the 'amusement' example. However, the correlation between SCL and time is very low, which is not typical for the 'amusement' example. Considering the provided examples and the current sample features, I would reason that the current sample is most likely to be 'amusement'."
+  },
+  "chest_EMG": {
+    "ANSWER": "amusement",
+    "REASON": "Comparing the current sample features with the examples provided, we can observe that the current sample features have a higher mean frequency (chest_EMG_mean_freq: 236.26) and peak frequency (chest_EMG_peak_freq: 336.00) compared to the baseline example. Additionally, the current sample features have a higher number of peaks (chest_EMG_num_peaks: 2138) and a higher normalized sum of peak amplitudes (chest_EMG_peak_amplitude_norm_sum: 0.12) compared to the baseline example. These characteristics are more similar to the stress and amusement examples. However, the current sample features have a lower mean amplitude (chest_EMG_mean: -1.39e-06) and a lower standard deviation (chest_EMG_std: 5.19e-03) compared to the stress example. Considering these factors, the current sample features seem to be more indicative of the amusement category."
+  },
+  "chest_RESP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided sensor features, the current sample features show a higher respiration rate (11.23) and a longer respiration duration (5.55) compared to the examples of baseline and amusement. The inhale and exhale duration means and standard deviations are also higher than the baseline example, but lower than the stress example. The inhale-exhale ratio is close to 1, which is similar to the baseline and amusement examples. However, the stretch value (21.21) is higher than all the examples, which might indicate a more intense emotional state. Considering these factors, the current sample features seem to be more similar to the stress example, but with some differences. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in features."
+  },
+  "chest_TEMP": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'amusement' category, as the mean skin temperature (chest_TEMP_mean) is higher (34.99) compared to the 'stress' example (34.57), and the dynamic range (chest_TEMP_max - chest_TEMP_min) is also higher (0.25) compared to the 'stress' example (0.25). Although the slope (chest_TEMP_slope) is similar to the 'stress' example, the overall pattern of the features suggests a positive emotional state, which is more characteristic of the 'amusement' category."
+  },
+  "wrist_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' category. The mean and standard deviation values for the x, y, and z axes are relatively low, indicating less movement. The peak frequency values are also low, suggesting a more stable and calm state. Additionally, the absolute integral values for the x, y, and z axes are relatively low, which is consistent with the 'amusement' category. However, it's essential to note that the sensor features might be wrong due to data collection or processing."
+  },
+  "wrist_BVP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples and the current sample features, the 'hr_mean' and 'hr_std' values for the current sample (79.19 and 20.77, respectively) are higher than the 'stress' example (71.59 and 35.81, respectively) but lower than the 'amusement' example (74.23 and 11.12, respectively). The 'hrv_mean' and 'hrv_std' values for the current sample (846.24 and 537.93, respectively) are also higher than the 'stress' example (1169.06 and 932.64, respectively) but lower than the 'amusement' example (825.26 and 117.32, respectively). The 'lf_hf_ratio' value for the current sample (2.15) is higher than the 'stress' example (6.16) and lower than the 'amusement' example (0.59). Considering these differences, the current sample features seem to be more similar to the 'stress' example than the 'amusement' example, but the 'hrv_std' value is higher than the 'stress' example, which might indicate a different emotional state. However, the 'hrv_std' value is also higher than the 'baseline' example, which might indicate a stressed state. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in the features."
+  },
+  "wrist_EDA": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided features, the current sample features are most similar to the example of 'baseline'. The mean and standard deviation of the EDA signal are close to the baseline example, and the slope and dynamic range are also within a similar range. Additionally, the number of SCR events and the area under the SCR curve are relatively low, which is consistent with the baseline condition. Although the features are not identical to the baseline example, they are closer to the baseline than to the stress or amusement examples."
+  },
+  "wrist_TEMP": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be most similar to the 'amusement' example. The mean skin temperature (wrist_TEMP_mean) is 31.76, which is close to the 'amusement' example (31.70). The standard deviation (wrist_TEMP_std) is 0.02, which is also similar to the 'amusement' example (0.02). Additionally, the slope (wrist_TEMP_slope) is 2.50e-04, which is the same as the 'amusement' example. Although the current sample features are not identical to the 'amusement' example, they are more similar to it compared to the 'baseline' and 'stress' examples."
+  }
+}
+
+Using your own knowledge and expertise, analyze the reasonings and answers and provide a final reasoned answer.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[SemanticFusionAgent] [AI]
+{
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_EMG, chest_TEMP, wrist_ACC, wrist_TEMP) are consistent in their classification of the emotional state as 'amusement'. Although some agents (wrist_BVP, wrist_RESP) suggest 'stress' as a possible classification, their reasonings are less consistent with the overall pattern of features. The wrist_BVP agent's reasoning is also uncertain due to the differences in features. The wrist_EDA agent suggests 'baseline', but its features are not as consistent with the overall pattern as the 'amusement' classification. Considering the majority of the agents' consistent classification and the overall pattern of features, the most likely emotional state is 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+
+[StatisticalFusionAgent] [HUMAN]
+You have received responses from multiple sensing agents:
+{
+  "chest_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' example, as the standard deviations for the x and y axes are relatively low, and the peak frequencies for the x and z axes are higher compared to the 'amusement' example. However, the absolute integrals for the x and z axes are also relatively low, which is more in line with the 'amusement' example. Additionally, the mean values for the x and z axes are also closer to the 'amusement' example. Considering the provided examples and the current sample features, the most likely emotional state is 'amusement'."
+  },
+  "chest_ECG": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a higher heart rate mean (77.88) and a higher LF/HF ratio (8.90) compared to the baseline example. The LF/HF ratio is particularly high, which is more indicative of the amusement state. Additionally, the current sample features have a higher LF component (0.06) and a lower HF component (6.27e-03) compared to the stress example. These characteristics are more consistent with the amusement state."
+  },
+  "chest_EDA": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided features, the current sample features seem to be most similar to the 'amusement' example. The mean and standard deviation of the EDA signal are close to the 'amusement' example, and the number of SCR events and the sum of SCR magnitudes are also similar. Additionally, the area under the SCR curve is relatively high, which is consistent with the 'amusement' example. However, the correlation between SCL and time is very low, which is not typical for the 'amusement' example. Considering the provided examples and the current sample features, I would reason that the current sample is most likely to be 'amusement'."
+  },
+  "chest_EMG": {
+    "ANSWER": "amusement",
+    "REASON": "Comparing the current sample features with the examples provided, we can observe that the current sample features have a higher mean frequency (chest_EMG_mean_freq: 236.26) and peak frequency (chest_EMG_peak_freq: 336.00) compared to the baseline example. Additionally, the current sample features have a higher number of peaks (chest_EMG_num_peaks: 2138) and a higher normalized sum of peak amplitudes (chest_EMG_peak_amplitude_norm_sum: 0.12) compared to the baseline example. These characteristics are more similar to the stress and amusement examples. However, the current sample features have a lower mean amplitude (chest_EMG_mean: -1.39e-06) and a lower standard deviation (chest_EMG_std: 5.19e-03) compared to the stress example. Considering these factors, the current sample features seem to be more indicative of the amusement category."
+  },
+  "chest_RESP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided sensor features, the current sample features show a higher respiration rate (11.23) and a longer respiration duration (5.55) compared to the examples of baseline and amusement. The inhale and exhale duration means and standard deviations are also higher than the baseline example, but lower than the stress example. The inhale-exhale ratio is close to 1, which is similar to the baseline and amusement examples. However, the stretch value (21.21) is higher than all the examples, which might indicate a more intense emotional state. Considering these factors, the current sample features seem to be more similar to the stress example, but with some differences. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in features."
+  },
+  "chest_TEMP": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'amusement' category, as the mean skin temperature (chest_TEMP_mean) is higher (34.99) compared to the 'stress' example (34.57), and the dynamic range (chest_TEMP_max - chest_TEMP_min) is also higher (0.25) compared to the 'stress' example (0.25). Although the slope (chest_TEMP_slope) is similar to the 'stress' example, the overall pattern of the features suggests a positive emotional state, which is more characteristic of the 'amusement' category."
+  },
+  "wrist_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' category. The mean and standard deviation values for the x, y, and z axes are relatively low, indicating less movement. The peak frequency values are also low, suggesting a more stable and calm state. Additionally, the absolute integral values for the x, y, and z axes are relatively low, which is consistent with the 'amusement' category. However, it's essential to note that the sensor features might be wrong due to data collection or processing."
+  },
+  "wrist_BVP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples and the current sample features, the 'hr_mean' and 'hr_std' values for the current sample (79.19 and 20.77, respectively) are higher than the 'stress' example (71.59 and 35.81, respectively) but lower than the 'amusement' example (74.23 and 11.12, respectively). The 'hrv_mean' and 'hrv_std' values for the current sample (846.24 and 537.93, respectively) are also higher than the 'stress' example (1169.06 and 932.64, respectively) but lower than the 'amusement' example (825.26 and 117.32, respectively). The 'lf_hf_ratio' value for the current sample (2.15) is higher than the 'stress' example (6.16) and lower than the 'amusement' example (0.59). Considering these differences, the current sample features seem to be more similar to the 'stress' example than the 'amusement' example, but the 'hrv_std' value is higher than the 'stress' example, which might indicate a different emotional state. However, the 'hrv_std' value is also higher than the 'baseline' example, which might indicate a stressed state. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in the features."
+  },
+  "wrist_EDA": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided features, the current sample features are most similar to the example of 'baseline'. The mean and standard deviation of the EDA signal are close to the baseline example, and the slope and dynamic range are also within a similar range. Additionally, the number of SCR events and the area under the SCR curve are relatively low, which is consistent with the baseline condition. Although the features are not identical to the baseline example, they are closer to the baseline than to the stress or amusement examples."
+  },
+  "wrist_TEMP": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be most similar to the 'amusement' example. The mean skin temperature (wrist_TEMP_mean) is 31.76, which is close to the 'amusement' example (31.70). The standard deviation (wrist_TEMP_std) is 0.02, which is also similar to the 'amusement' example (0.02). Additionally, the slope (wrist_TEMP_slope) is 2.50e-04, which is the same as the 'amusement' example. Although the current sample features are not identical to the 'amusement' example, they are more similar to it compared to the 'baseline' and 'stress' examples."
+  }
+}
+
+You are on the side that the correct answer is amusement which is the majority answer.
+Based on the given reasonings and answers, provide a final reasoned answer for the task.
+For agents who provided different answers from amusement, explain why their reasoning is likely affected by noise or unreliable signal interpretation.
+Stay consistent with the position that the correct answer is likely amusement.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "amusement",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[StatisticalFusionAgent] [AI]
+{
+  "REASON": "Based on the provided reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_EMG, chest_TEMP, wrist_ACC, wrist_TEMP) agree that the current emotional state is 'amusement'. The reasonings provided by these agents highlight various physiological signals that are indicative of a positive emotional state, such as low standard deviations for the x and y axes in chest_ACC, high heart rate mean and LF/HF ratio in chest_ECG, and high mean skin temperature in chest_TEMP. In contrast, the agents that provided different answers (chest_RESP, wrist_BVP, wrist_EDA) seem to be affected by noise or unreliable signal interpretation. For example, chest_RESP's reasoning is likely affected by the high stretch value, which might be an outlier or an error in data collection. Similarly, wrist_BVP's reasoning is likely affected by the high 'hrv_std' value, which might be an artifact of the signal processing. Wrist_EDA's reasoning is likely affected by the low number of SCR events and area under the SCR curve, which might be due to a faulty sensor or incorrect data processing. Considering the majority of the agents agree on the 'amusement' state and the reasonings provided by the agents that disagree seem to be affected by noise or unreliable signal interpretation, the most likely answer is 'amusement'."
+}
+
+
+[StatisticalFusionAgent] [HUMAN]
+Failed to parse the JSON from the previous response. Please try again.
+
+
+[StatisticalFusionAgent] [AI]
+{
+  "REASON": "Based on the provided reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_EMG, chest_TEMP, wrist_ACC, wrist_TEMP) agree that the current emotional state is 'amusement'. The reasonings provided by these agents highlight various physiological signals that are indicative of a positive emotional state, such as low standard deviations for the x and y axes in chest_ACC, high heart rate mean and LF/HF ratio in chest_ECG, and high mean skin temperature in chest_TEMP. In contrast, the agents that provided different answers (chest_RESP, wrist_BVP, wrist_EDA) seem to be affected by noise or unreliable signal interpretation. For example, chest_RESP's reasoning is likely affected by the high stretch value, which might be an outlier or an error in data collection. Similarly, wrist_BVP's reasoning is likely affected by the high 'hrv_std' value, which might be an artifact of the signal processing. Wrist_EDA's reasoning is likely affected by the low number of SCR events and area under the SCR curve, which might be due to a faulty sensor or incorrect data processing. Considering the majority of the agents agree on the 'amusement' state and the reasonings provided by the agents that disagree seem to be affected by noise or unreliable signal interpretation, the most likely answer is 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+
+[HybridFusionAgent] [HUMAN]
+You have received the following information.
+1. Original responses from individual modality agents:
+{
+  "chest_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' example, as the standard deviations for the x and y axes are relatively low, and the peak frequencies for the x and z axes are higher compared to the 'amusement' example. However, the absolute integrals for the x and z axes are also relatively low, which is more in line with the 'amusement' example. Additionally, the mean values for the x and z axes are also closer to the 'amusement' example. Considering the provided examples and the current sample features, the most likely emotional state is 'amusement'."
+  },
+  "chest_ECG": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a higher heart rate mean (77.88) and a higher LF/HF ratio (8.90) compared to the baseline example. The LF/HF ratio is particularly high, which is more indicative of the amusement state. Additionally, the current sample features have a higher LF component (0.06) and a lower HF component (6.27e-03) compared to the stress example. These characteristics are more consistent with the amusement state."
+  },
+  "chest_EDA": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided features, the current sample features seem to be most similar to the 'amusement' example. The mean and standard deviation of the EDA signal are close to the 'amusement' example, and the number of SCR events and the sum of SCR magnitudes are also similar. Additionally, the area under the SCR curve is relatively high, which is consistent with the 'amusement' example. However, the correlation between SCL and time is very low, which is not typical for the 'amusement' example. Considering the provided examples and the current sample features, I would reason that the current sample is most likely to be 'amusement'."
+  },
+  "chest_EMG": {
+    "ANSWER": "amusement",
+    "REASON": "Comparing the current sample features with the examples provided, we can observe that the current sample features have a higher mean frequency (chest_EMG_mean_freq: 236.26) and peak frequency (chest_EMG_peak_freq: 336.00) compared to the baseline example. Additionally, the current sample features have a higher number of peaks (chest_EMG_num_peaks: 2138) and a higher normalized sum of peak amplitudes (chest_EMG_peak_amplitude_norm_sum: 0.12) compared to the baseline example. These characteristics are more similar to the stress and amusement examples. However, the current sample features have a lower mean amplitude (chest_EMG_mean: -1.39e-06) and a lower standard deviation (chest_EMG_std: 5.19e-03) compared to the stress example. Considering these factors, the current sample features seem to be more indicative of the amusement category."
+  },
+  "chest_RESP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided sensor features, the current sample features show a higher respiration rate (11.23) and a longer respiration duration (5.55) compared to the examples of baseline and amusement. The inhale and exhale duration means and standard deviations are also higher than the baseline example, but lower than the stress example. The inhale-exhale ratio is close to 1, which is similar to the baseline and amusement examples. However, the stretch value (21.21) is higher than all the examples, which might indicate a more intense emotional state. Considering these factors, the current sample features seem to be more similar to the stress example, but with some differences. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in features."
+  },
+  "chest_TEMP": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'amusement' category, as the mean skin temperature (chest_TEMP_mean) is higher (34.99) compared to the 'stress' example (34.57), and the dynamic range (chest_TEMP_max - chest_TEMP_min) is also higher (0.25) compared to the 'stress' example (0.25). Although the slope (chest_TEMP_slope) is similar to the 'stress' example, the overall pattern of the features suggests a positive emotional state, which is more characteristic of the 'amusement' category."
+  },
+  "wrist_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'amusement' category. The mean and standard deviation values for the x, y, and z axes are relatively low, indicating less movement. The peak frequency values are also low, suggesting a more stable and calm state. Additionally, the absolute integral values for the x, y, and z axes are relatively low, which is consistent with the 'amusement' category. However, it's essential to note that the sensor features might be wrong due to data collection or processing."
+  },
+  "wrist_BVP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples and the current sample features, the 'hr_mean' and 'hr_std' values for the current sample (79.19 and 20.77, respectively) are higher than the 'stress' example (71.59 and 35.81, respectively) but lower than the 'amusement' example (74.23 and 11.12, respectively). The 'hrv_mean' and 'hrv_std' values for the current sample (846.24 and 537.93, respectively) are also higher than the 'stress' example (1169.06 and 932.64, respectively) but lower than the 'amusement' example (825.26 and 117.32, respectively). The 'lf_hf_ratio' value for the current sample (2.15) is higher than the 'stress' example (6.16) and lower than the 'amusement' example (0.59). Considering these differences, the current sample features seem to be more similar to the 'stress' example than the 'amusement' example, but the 'hrv_std' value is higher than the 'stress' example, which might indicate a different emotional state. However, the 'hrv_std' value is also higher than the 'baseline' example, which might indicate a stressed state. Therefore, the most likely answer is 'stress', but with some uncertainty due to the differences in the features."
+  },
+  "wrist_EDA": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided features, the current sample features are most similar to the example of 'baseline'. The mean and standard deviation of the EDA signal are close to the baseline example, and the slope and dynamic range are also within a similar range. Additionally, the number of SCR events and the area under the SCR curve are relatively low, which is consistent with the baseline condition. Although the features are not identical to the baseline example, they are closer to the baseline than to the stress or amusement examples."
+  },
+  "wrist_TEMP": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples, the current sample features seem to be most similar to the 'amusement' example. The mean skin temperature (wrist_TEMP_mean) is 31.76, which is close to the 'amusement' example (31.70). The standard deviation (wrist_TEMP_std) is 0.02, which is also similar to the 'amusement' example (0.02). Additionally, the slope (wrist_TEMP_slope) is 2.50e-04, which is the same as the 'amusement' example. Although the current sample features are not identical to the 'amusement' example, they are more similar to it compared to the 'baseline' and 'stress' examples."
+  }
+}
+
+2. Responses from fusion agents:
+{
+  "ANSWER": "amusement",
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_EMG, chest_TEMP, wrist_ACC, wrist_TEMP) are consistent in their classification of the emotional state as 'amusement'. Although some agents (wrist_BVP, wrist_RESP) suggest 'stress' as a possible classification, their reasonings are less consistent with the overall pattern of features. The wrist_BVP agent's reasoning is also uncertain due to the differences in features. The wrist_EDA agent suggests 'baseline', but its features are not as consistent with the overall pattern as the 'amusement' classification. Considering the majority of the agents' consistent classification and the overall pattern of features, the most likely emotional state is 'amusement'."
+}
+
+{
+  "ANSWER": "amusement",
+  "REASON": "Based on the provided reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_EMG, chest_TEMP, wrist_ACC, wrist_TEMP) agree that the current emotional state is 'amusement'. The reasonings provided by these agents highlight various physiological signals that are indicative of a positive emotional state, such as low standard deviations for the x and y axes in chest_ACC, high heart rate mean and LF/HF ratio in chest_ECG, and high mean skin temperature in chest_TEMP. In contrast, the agents that provided different answers (chest_RESP, wrist_BVP, wrist_EDA) seem to be affected by noise or unreliable signal interpretation. For example, chest_RESP's reasoning is likely affected by the high stretch value, which might be an outlier or an error in data collection. Similarly, wrist_BVP's reasoning is likely affected by the high 'hrv_std' value, which might be an artifact of the signal processing. Wrist_EDA's reasoning is likely affected by the low number of SCR events and area under the SCR curve, which might be due to a faulty sensor or incorrect data processing. Considering the majority of the agents agree on the 'amusement' state and the reasonings provided by the agents that disagree seem to be affected by noise or unreliable signal interpretation, the most likely answer is 'amusement'."
+}
+
+Your task is to determine the responses from the fusion agents and provide a final reasoned answer for the task.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[HybridFusionAgent] [AI]
+{
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_EMG, chest_TEMP, wrist_ACC, wrist_TEMP) are consistent in their classification of the emotional state as 'amusement'. Although some agents (wrist_BVP, wrist_RESP) suggest 'stress' as a possible classification, their reasonings are less consistent with the overall pattern of features. The wrist_BVP agent's reasoning is also uncertain due to the differences in features. The wrist_EDA agent suggests 'baseline', but its features are not as consistent with the overall pattern as the 'amusement' classification. Considering the majority of the agents' consistent classification and the overall pattern of features, the most likely emotional state is 'amusement'.",
+  "ANSWER": "amusement"
+}
+
+

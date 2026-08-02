@@ -1,0 +1,224 @@
+[wrist_EDA] [SYSTEM]
+You are wrist_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded at 4 Hz from the wrist. The signal was processed similarly to chest EDA, including low-pass filtering and decomposition into tonic (SCL) and phasic (SCR) components. Features were derived from both raw and decomposed signals, covering basic statistics, time correlation, SCR frequency, and area-based metrics. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_EDA] [HUMAN]
+You have received sensor features from wrist_EDA modality:
+wrist_EDA features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_EDA_mean: 3.31
+  - wrist_EDA_std: 0.29
+  - wrist_EDA_min: 2.97
+  - wrist_EDA_max: 3.82
+  - wrist_EDA_slope: -3.49e-03
+  - wrist_EDA_dynamic_range: 0.85
+  - wrist_EDA_scl_mean: 3.31
+  - wrist_EDA_scl_std: 0.28
+  - wrist_EDA_scr_mean: 3.09e-04
+  - wrist_EDA_scr_std: 0.04
+  - wrist_EDA_scl_time_corr: -0.95
+  - wrist_EDA_scr_num_segments: 9
+  - wrist_EDA_scr_sum_magnitudes: 0.53
+  - wrist_EDA_scr_total_duration: 2.75
+  - wrist_EDA_scr_auc: 0.59
+
+*Example of stress*:
+  - wrist_EDA_mean: 3.06
+  - wrist_EDA_std: 0.09
+  - wrist_EDA_min: 2.78
+  - wrist_EDA_max: 3.21
+  - wrist_EDA_slope: 7.14e-04
+  - wrist_EDA_dynamic_range: 0.43
+  - wrist_EDA_scl_mean: 3.06
+  - wrist_EDA_scl_std: 0.04
+  - wrist_EDA_scr_mean: -1.09e-03
+  - wrist_EDA_scr_std: 0.08
+  - wrist_EDA_scl_time_corr: 0.68
+  - wrist_EDA_scr_num_segments: 23
+  - wrist_EDA_scr_sum_magnitudes: 1.64
+  - wrist_EDA_scr_total_duration: 16.00
+  - wrist_EDA_scr_auc: 1.74
+
+*Example of amusement*:
+  - wrist_EDA_mean: 2.55
+  - wrist_EDA_std: 0.07
+  - wrist_EDA_min: 2.42
+  - wrist_EDA_max: 2.66
+  - wrist_EDA_slope: 3.25e-04
+  - wrist_EDA_dynamic_range: 0.24
+  - wrist_EDA_scl_mean: 2.55
+  - wrist_EDA_scl_std: 0.06
+  - wrist_EDA_scr_mean: -4.09e-05
+  - wrist_EDA_scr_std: 0.03
+  - wrist_EDA_scl_time_corr: 0.60
+  - wrist_EDA_scr_num_segments: 7
+  - wrist_EDA_scr_sum_magnitudes: 0.36
+  - wrist_EDA_scr_total_duration: 4.75
+  - wrist_EDA_scr_auc: 0.44
+
+**Current sample features**:
+  - wrist_EDA_mean: 2.66
+  - wrist_EDA_std: 0.03
+  - wrist_EDA_min: 2.54
+  - wrist_EDA_max: 2.75
+  - wrist_EDA_slope: -8.00e-04
+  - wrist_EDA_dynamic_range: 0.21
+  - wrist_EDA_scl_mean: 2.66
+  - wrist_EDA_scl_std: 0.03
+  - wrist_EDA_scr_mean: -1.57e-03
+  - wrist_EDA_scr_std: 0.02
+  - wrist_EDA_scl_time_corr: -0.93
+  - wrist_EDA_scr_num_segments: 11
+  - wrist_EDA_scr_sum_magnitudes: 0.42
+  - wrist_EDA_scr_total_duration: 8.50
+  - wrist_EDA_scr_auc: 0.39
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_EDA] [AI]
+{
+  "REASON": "Based on the provided features, the current sample features show a low mean and standard deviation of EDA, indicating a relatively stable and calm state. The low number of SCR events and the small sum of SCR magnitudes also suggest a low level of stress or excitement. The negative correlation between SCL and time, as well as the low area under the SCR curve, further support this interpretation. In comparison to the examples of stress and amusement, the current sample features are more similar to the example of baseline, with a lower EDA mean and standard deviation, and a lower number of SCR events.",
+  "ANSWER": "baseline"
+}
+
+
+[wrist_EDA] [SYSTEM]
+You are wrist_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded at 4 Hz from the wrist. The signal was processed similarly to chest EDA, including low-pass filtering and decomposition into tonic (SCL) and phasic (SCR) components. Features were derived from both raw and decomposed signals, covering basic statistics, time correlation, SCR frequency, and area-based metrics. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_EDA] [HUMAN]
+You have received sensor features from wrist_EDA modality:
+wrist_EDA features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_EDA_mean: 3.31
+  - wrist_EDA_std: 0.29
+  - wrist_EDA_min: 2.97
+  - wrist_EDA_max: 3.82
+  - wrist_EDA_slope: -3.49e-03
+  - wrist_EDA_dynamic_range: 0.85
+  - wrist_EDA_scl_mean: 3.31
+  - wrist_EDA_scl_std: 0.28
+  - wrist_EDA_scr_mean: 3.09e-04
+  - wrist_EDA_scr_std: 0.04
+  - wrist_EDA_scl_time_corr: -0.95
+  - wrist_EDA_scr_num_segments: 9
+  - wrist_EDA_scr_sum_magnitudes: 0.53
+  - wrist_EDA_scr_total_duration: 2.75
+  - wrist_EDA_scr_auc: 0.59
+
+*Example of stress*:
+  - wrist_EDA_mean: 3.06
+  - wrist_EDA_std: 0.09
+  - wrist_EDA_min: 2.78
+  - wrist_EDA_max: 3.21
+  - wrist_EDA_slope: 7.14e-04
+  - wrist_EDA_dynamic_range: 0.43
+  - wrist_EDA_scl_mean: 3.06
+  - wrist_EDA_scl_std: 0.04
+  - wrist_EDA_scr_mean: -1.09e-03
+  - wrist_EDA_scr_std: 0.08
+  - wrist_EDA_scl_time_corr: 0.68
+  - wrist_EDA_scr_num_segments: 23
+  - wrist_EDA_scr_sum_magnitudes: 1.64
+  - wrist_EDA_scr_total_duration: 16.00
+  - wrist_EDA_scr_auc: 1.74
+
+*Example of amusement*:
+  - wrist_EDA_mean: 2.55
+  - wrist_EDA_std: 0.07
+  - wrist_EDA_min: 2.42
+  - wrist_EDA_max: 2.66
+  - wrist_EDA_slope: 3.25e-04
+  - wrist_EDA_dynamic_range: 0.24
+  - wrist_EDA_scl_mean: 2.55
+  - wrist_EDA_scl_std: 0.06
+  - wrist_EDA_scr_mean: -4.09e-05
+  - wrist_EDA_scr_std: 0.03
+  - wrist_EDA_scl_time_corr: 0.60
+  - wrist_EDA_scr_num_segments: 7
+  - wrist_EDA_scr_sum_magnitudes: 0.36
+  - wrist_EDA_scr_total_duration: 4.75
+  - wrist_EDA_scr_auc: 0.44
+
+**Current sample features**:
+  - wrist_EDA_mean: 2.66
+  - wrist_EDA_std: 0.03
+  - wrist_EDA_min: 2.54
+  - wrist_EDA_max: 2.75
+  - wrist_EDA_slope: -8.00e-04
+  - wrist_EDA_dynamic_range: 0.21
+  - wrist_EDA_scl_mean: 2.66
+  - wrist_EDA_scl_std: 0.03
+  - wrist_EDA_scr_mean: -1.57e-03
+  - wrist_EDA_scr_std: 0.02
+  - wrist_EDA_scl_time_corr: -0.93
+  - wrist_EDA_scr_num_segments: 11
+  - wrist_EDA_scr_sum_magnitudes: 0.42
+  - wrist_EDA_scr_total_duration: 8.50
+  - wrist_EDA_scr_auc: 0.39
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_EDA] [AI]
+{
+  "REASON": "Based on the provided features, the current sample features are most similar to the example of 'amusement'. The mean and standard deviation of the wrist EDA signal are low, indicating a relatively stable and calm state. The slope of the wrist EDA signal is also low, suggesting a lack of significant changes in the signal. Additionally, the number of SCR events and the sum of SCR magnitudes are relatively low, which is consistent with the 'amusement' condition. The correlation between SCL and time is also low, which is also consistent with the 'amusement' condition.",
+  "ANSWER": "amusement"
+}
+
+

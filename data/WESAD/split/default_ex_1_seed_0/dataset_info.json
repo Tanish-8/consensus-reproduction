@@ -1,0 +1,1155 @@
+{
+  "citation": "",
+  "description": "",
+  "features": {
+    "test": {
+      "user_id": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "label": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "features": {
+        "chest_ACC_x_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_x_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_x_peak_frequency": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_x_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_y_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_y_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_y_peak_frequency": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_y_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_z_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_z_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_z_peak_frequency": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_z_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_mag_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_mag_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ACC_mag_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hr_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hr_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_pnn50": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_tinn": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_rmssd": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_ulf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_lf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_hf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_uhf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_lf_hf_ratio": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_total_power": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_rel_ulf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_rel_lf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_rel_hf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_rel_uhf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_normalized_lf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_ECG_hrv_normalized_hf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_dynamic_range": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_median": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_10th_percentile": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_90th_percentile": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_mean_freq": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_median_freq": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_peak_freq": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band1_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band2_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band3_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band4_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band5_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band6_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_band7_energy": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_num_peaks": {
+          "dtype": "int64",
+          "_type": "Value"
+        },
+        "chest_EMG_peak_amplitude_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_peak_amplitude_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_peak_amplitude_sum": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EMG_peak_amplitude_norm_sum": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_min": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_max": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_slope": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_dynamic_range": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scl_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scl_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scr_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scr_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scl_time_corr": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scr_num_segments": {
+          "dtype": "int64",
+          "_type": "Value"
+        },
+        "chest_EDA_scr_sum_magnitudes": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scr_total_duration": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_EDA_scr_auc": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_TEMP_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_TEMP_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_TEMP_min": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_TEMP_max": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_TEMP_slope": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_inhale_duration_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_inhale_duration_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_exhale_duration_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_exhale_duration_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_inhale_exhale_ratio": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_stretch": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_inspiration_volume": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_respiration_rate": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "chest_RESP_respiration_duration": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_x_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_x_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_x_peak_frequency": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_x_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_y_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_y_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_y_peak_frequency": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_y_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_z_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_z_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_z_peak_frequency": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_z_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_mag_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_mag_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_ACC_mag_absolute_integral": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hr_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hr_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_pnn50": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_tinn": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_rmssd": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_ulf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_lf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_hf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_uhf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_lf_hf_ratio": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_total_power": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_rel_ulf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_rel_lf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_rel_hf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_rel_uhf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_normalized_lf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_BVP_hrv_normalized_hf": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_min": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_max": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_slope": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_dynamic_range": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scl_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scl_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scr_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scr_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scl_time_corr": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scr_num_segments": {
+          "dtype": "int64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scr_sum_magnitudes": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scr_total_duration": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_EDA_scr_auc": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_TEMP_mean": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_TEMP_std": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_TEMP_min": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_TEMP_max": {
+          "dtype": "float64",
+          "_type": "Value"
+        },
+        "wrist_TEMP_slope": {
+          "dtype": "float64",
+          "_type": "Value"
+        }
+      },
+      "sample_id": {
+        "dtype": "int64",
+        "_type": "Value"
+      }
+    },
+    "examples": {
+      "feature": {
+        "user_id": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "label": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "features": {
+          "chest_ACC_x_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_x_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_x_peak_frequency": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_x_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_y_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_y_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_y_peak_frequency": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_y_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_z_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_z_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_z_peak_frequency": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_z_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_mag_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_mag_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ACC_mag_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hr_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hr_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_pnn50": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_tinn": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_rmssd": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_ulf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_lf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_hf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_uhf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_lf_hf_ratio": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_total_power": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_rel_ulf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_rel_lf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_rel_hf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_rel_uhf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_normalized_lf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_ECG_hrv_normalized_hf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_dynamic_range": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_median": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_10th_percentile": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_90th_percentile": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_mean_freq": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_median_freq": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_peak_freq": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band1_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band2_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band3_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band4_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band5_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band6_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_band7_energy": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_num_peaks": {
+            "dtype": "int64",
+            "_type": "Value"
+          },
+          "chest_EMG_peak_amplitude_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_peak_amplitude_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_peak_amplitude_sum": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EMG_peak_amplitude_norm_sum": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_min": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_max": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_slope": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_dynamic_range": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scl_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scl_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scr_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scr_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scl_time_corr": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scr_num_segments": {
+            "dtype": "int64",
+            "_type": "Value"
+          },
+          "chest_EDA_scr_sum_magnitudes": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scr_total_duration": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_EDA_scr_auc": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_TEMP_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_TEMP_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_TEMP_min": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_TEMP_max": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_TEMP_slope": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_inhale_duration_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_inhale_duration_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_exhale_duration_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_exhale_duration_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_inhale_exhale_ratio": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_stretch": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_inspiration_volume": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_respiration_rate": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "chest_RESP_respiration_duration": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_x_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_x_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_x_peak_frequency": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_x_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_y_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_y_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_y_peak_frequency": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_y_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_z_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_z_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_z_peak_frequency": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_z_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_mag_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_mag_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_ACC_mag_absolute_integral": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hr_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hr_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_pnn50": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_tinn": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_rmssd": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_ulf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_lf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_hf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_uhf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_lf_hf_ratio": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_total_power": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_rel_ulf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_rel_lf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_rel_hf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_rel_uhf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_normalized_lf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_BVP_hrv_normalized_hf": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_min": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_max": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_slope": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_dynamic_range": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scl_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scl_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scr_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scr_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scl_time_corr": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scr_num_segments": {
+            "dtype": "int64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scr_sum_magnitudes": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scr_total_duration": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_EDA_scr_auc": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_TEMP_mean": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_TEMP_std": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_TEMP_min": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_TEMP_max": {
+            "dtype": "float64",
+            "_type": "Value"
+          },
+          "wrist_TEMP_slope": {
+            "dtype": "float64",
+            "_type": "Value"
+          }
+        },
+        "sample_id": {
+          "dtype": "int64",
+          "_type": "Value"
+        }
+      },
+      "_type": "List"
+    }
+  },
+  "homepage": "",
+  "license": ""
+}

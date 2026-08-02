@@ -1,0 +1,132 @@
+[wrist_ACC] [SYSTEM]
+You are wrist_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Wrist-worn accelerometer (ACC, in 1/64 g) data was recorded at 32 Hz. Acceleration in three axes (x, y, z) and overall magnitude were used to compute features from the most recent 5-second window, including mean, std, absolute integral, and peak frequency per axis. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_ACC] [SYSTEM]
+You are wrist_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from wrist_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Wrist-worn accelerometer (ACC, in 1/64 g) data was recorded at 32 Hz. Acceleration in three axes (x, y, z) and overall magnitude were used to compute features from the most recent 5-second window, including mean, std, absolute integral, and peak frequency per axis. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[wrist_ACC] [HUMAN]
+You have received sensor features from wrist_ACC modality:
+wrist_ACC features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - wrist_ACC_x_mean: -34.44
+  - wrist_ACC_x_std: 0.89
+  - wrist_ACC_x_peak_frequency: 0.03
+  - wrist_ACC_x_absolute_integral: 2066.62
+  - wrist_ACC_y_mean: -5.79
+  - wrist_ACC_y_std: 0.56
+  - wrist_ACC_y_peak_frequency: 0.02
+  - wrist_ACC_y_absolute_integral: 347.16
+  - wrist_ACC_z_mean: -54.46
+  - wrist_ACC_z_std: 0.64
+  - wrist_ACC_z_peak_frequency: 0.03
+  - wrist_ACC_z_absolute_integral: 3267.53
+  - wrist_ACC_mag_mean: 64.71
+  - wrist_ACC_mag_std: 0.50
+  - wrist_ACC_mag_absolute_integral: 3882.37
+
+*Example of stress*:
+  - wrist_ACC_x_mean: -22.94
+  - wrist_ACC_x_std: 5.30
+  - wrist_ACC_x_peak_frequency: 0.08
+  - wrist_ACC_x_absolute_integral: 1378.88
+  - wrist_ACC_y_mean: 59.91
+  - wrist_ACC_y_std: 3.16
+  - wrist_ACC_y_peak_frequency: 0.08
+  - wrist_ACC_y_absolute_integral: 3594.88
+  - wrist_ACC_z_mean: 3.73
+  - wrist_ACC_z_std: 6.87
+  - wrist_ACC_z_peak_frequency: 0.03
+  - wrist_ACC_z_absolute_integral: 326.00
+  - wrist_ACC_mag_mean: 64.85
+  - wrist_ACC_mag_std: 3.10
+  - wrist_ACC_mag_absolute_integral: 3890.96
+
+*Example of amusement*:
+  - wrist_ACC_x_mean: -49.94
+  - wrist_ACC_x_std: 6.54
+  - wrist_ACC_x_peak_frequency: 0.02
+  - wrist_ACC_x_absolute_integral: 2997.88
+  - wrist_ACC_y_mean: 15.44
+  - wrist_ACC_y_std: 6.60
+  - wrist_ACC_y_peak_frequency: 0.02
+  - wrist_ACC_y_absolute_integral: 956.41
+  - wrist_ACC_z_mean: 36.53
+  - wrist_ACC_z_std: 6.03
+  - wrist_ACC_z_peak_frequency: 0.02
+  - wrist_ACC_z_absolute_integral: 2193.62
+  - wrist_ACC_mag_mean: 64.68
+  - wrist_ACC_mag_std: 2.48
+  - wrist_ACC_mag_absolute_integral: 3880.67
+
+**Current sample features**:
+  - wrist_ACC_x_mean: -20.14
+  - wrist_ACC_x_std: 1.35
+  - wrist_ACC_x_peak_frequency: 0.03
+  - wrist_ACC_x_absolute_integral: 1208.31
+  - wrist_ACC_y_mean: -11.07
+  - wrist_ACC_y_std: 0.46
+  - wrist_ACC_y_peak_frequency: 0.07
+  - wrist_ACC_y_absolute_integral: 663.91
+  - wrist_ACC_z_mean: -60.20
+  - wrist_ACC_z_std: 0.62
+  - wrist_ACC_z_peak_frequency: 0.03
+  - wrist_ACC_z_absolute_integral: 3611.91
+  - wrist_ACC_mag_mean: 64.45
+  - wrist_ACC_mag_std: 0.51
+  - wrist_ACC_mag_absolute_integral: 3867.09
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[wrist_ACC] [AI]
+{
+  "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'stress' example in terms of standard deviation (std) values, especially for the x-axis (wrist_ACC_x_std: 1.35 vs 5.30 in the 'stress' example). The peak frequency values are also similar to the 'stress' example. However, the absolute integral values are closer to the 'baseline' example. Considering these factors, the current sample features are more indicative of the 'stress' state.",
+  "ANSWER": "stress"
+}
+
+

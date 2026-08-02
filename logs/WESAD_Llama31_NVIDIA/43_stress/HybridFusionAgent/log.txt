@@ -1,0 +1,104 @@
+[HybridFusionAgent] [SYSTEM]
+You are a coordinator agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents, each interpreting different modalities, as well as two fusion agents that have already aggregated these responses in different ways.
+Your goal is to coordinate the responses from the fusion agents and provide a final reasoned answer for the task.
+
+
+[HybridFusionAgent] [SYSTEM]
+You are a coordinator agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents, each interpreting different modalities, as well as two fusion agents that have already aggregated these responses in different ways.
+Your goal is to coordinate the responses from the fusion agents and provide a final reasoned answer for the task.
+
+
+[HybridFusionAgent] [HUMAN]
+You have received the following information.
+1. Original responses from individual modality agents:
+{
+  "chest_ACC": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features for 'chest_ACC_x_std' and 'chest_ACC_mag_std' are relatively low compared to the examples of 'baseline' and 'amusement'. However, they are closer to the examples of 'stress'. Additionally, the 'chest_ACC_x_absolute_integral' and 'chest_ACC_mag_absolute_integral' values are similar to the examples of 'stress'. Considering these points, I lean towards the 'stress' category."
+  },
+  "chest_ECG": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided features, the current sample features show a high heart rate (chest_ECG_hr_mean: 123.38) and low pnn50 (chest_ECG_hrv_pnn50: 0.00e+00), which is similar to the stress example. Additionally, the lf_hf_ratio (chest_ECG_hrv_lf_hf_ratio: 6.00) is higher than the baseline and amusement examples, indicating a higher level of sympathetic activity. However, the normalized LF (chest_ECG_hrv_normalized_lf: 0.85) and HF (chest_ECG_hrv_normalized_hf: 0.14) are closer to the amusement example, suggesting a mix of stress and amusement-like features. Considering the high heart rate and low pnn50, I lean towards the stress category."
+  },
+  "chest_EDA": {
+    "ANSWER": "stress",
+    "REASON": "The current sample features show a high mean and dynamic range, indicating a significant change in the EDA signal. The scl_time_corr is high, suggesting a strong correlation between the tonic component and time, which is typical for stress responses. Additionally, the number of SCR events and the sum of their magnitudes are moderate, further supporting the presence of a stress response. Although the features do not perfectly align with the examples, they are more similar to the stress example than the baseline or amusement examples."
+  },
+  "chest_EMG": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a higher mean frequency (208.99) and a lower peak frequency (191.50) compared to the stress example. Additionally, the current sample features have a lower mean amplitude (1.28e-05) and a lower peak amplitude sum (0.03) compared to the stress example. These characteristics are more similar to the baseline example. However, the current sample features have a higher dynamic range (0.04) and a higher band energy in certain frequency bands (e.g., chest_EMG_band3_energy: 1.44e-05, chest_EMG_band4_energy: 1.73e-05) compared to the baseline example. Considering these factors, I lean towards the baseline category."
+  },
+  "chest_RESP": {
+    "ANSWER": "stress",
+    "REASON": "The current sample features show a higher inhale duration mean (1.99) and exhale duration mean (2.28) compared to the baseline example (1.73 and 1.73), indicating a more variable breathing pattern. The inhale-exhale ratio is lower (0.87) compared to the baseline example (1.00), suggesting a more irregular breathing pattern. The respiration rate is higher (14.36) compared to the baseline example (17.49), indicating a faster breathing rate. These features are more similar to the stress example, which also shows a higher inhale duration mean and exhale duration mean, a lower inhale-exhale ratio, and a higher respiration rate. However, the current sample features do not show the same level of variability as the stress example, and the respiration rate is not as high. Therefore, the most likely answer is stress."
+  },
+  "chest_TEMP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'stress' example, as the mean temperature is lower (34.59 vs 34.54) and the minimum temperature is also lower (34.46 vs 34.44). However, the standard deviation and slope are very similar to the 'baseline' example, which might indicate some inconsistencies in the data. Considering the provided examples and the characteristics of each affective state, I would lean towards 'stress' as the most likely answer."
+  },
+  "wrist_ACC": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples, the current sample features show low variability in the x-axis (wrist_ACC_x_std: 1.00) and y-axis (wrist_ACC_y_std: 0.96), which is more similar to the baseline condition. Additionally, the absolute integrals for the x-axis (wrist_ACC_x_absolute_integral: 3669.66) and z-axis (wrist_ACC_z_absolute_integral: 1401.19) are lower compared to the stress and amusement conditions. The overall magnitude (wrist_ACC_mag_mean: 65.51) is close to the stress condition, but the low variability in the x and y axes suggests a more neutral state."
+  },
+  "wrist_BVP": {
+    "ANSWER": "stress",
+    "REASON": "The current sample features show a high heart rate (wrist_BVP_hr_mean: 98.75) and high heart rate variability (wrist_BVP_hrv_mean: 708.33) with a relatively high LF/HF ratio (wrist_BVP_hrv_lf_hf_ratio: 0.22), which is indicative of stress. The high heart rate and high heart rate variability are also consistent with the stress example provided. Although the LF/HF ratio is not as high as in the stress example, it is still higher than in the baseline example. The amusement example has a much higher LF/HF ratio (2.15) and a different pattern of heart rate variability, which is not consistent with the current sample features."
+  },
+  "wrist_EDA": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided features, the current sample features show a high mean and maximum EDA value (4.83 and 4.99, respectively), indicating a high level of physiological arousal. The slope of the EDA signal is also positive (1.47e-03), suggesting an increasing trend in EDA. Additionally, the SCL time correlation is high (0.97), indicating a strong relationship between the tonic component and time. The number of SCR events is moderate (10), and the sum of SCR magnitudes is relatively high (0.48). These features are more consistent with the stress condition, which is characterized by high levels of physiological arousal and a strong response to stimuli. The features do not align well with the baseline or amusement conditions, which typically exhibit lower EDA values and a more stable tonic component."
+  },
+  "wrist_TEMP": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples, the current sample features seem to be more aligned with the 'stress' condition, as the mean temperature is lower (32.57 vs 32.75 and 31.76 for stress and amusement, respectively) and the slope is negative (-5.42e-04 vs -2.50e-04 for stress). However, the standard deviation is slightly higher than in the examples, which could indicate some variability in the data. Considering the differences in the features, I would lean towards classifying the current sample as 'stress', but with some uncertainty due to the potential issues with the sensor features."
+  }
+}
+
+2. Responses from fusion agents:
+{
+  "ANSWER": "stress",
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_RESP, chest_TEMP, wrist_BVP, wrist_EDA, wrist_TEMP) are leaning towards the 'stress' category. Although some agents (chest_EMG, wrist_ACC) are suggesting the 'baseline' category, their reasonings are not as strong as the ones supporting the 'stress' category. The 'amusement' category is not supported by any of the agents. Considering the consistency of the reasonings and the features that are being highlighted as indicative of stress, I lean towards the 'stress' category."
+}
+
+{
+  "ANSWER": "stress",
+  "REASON": "Based on the majority of the sensing agents' responses, the current sample features are more consistent with the 'stress' condition. Agents such as 'chest_ACC', 'chest_ECG', 'chest_EDA', 'chest_RESP', 'chest_TEMP', 'wrist_BVP', 'wrist_EDA', and 'wrist_TEMP' all lean towards the 'stress' category, citing features such as high heart rate, low pnn50, significant change in EDA signal, high mean and dynamic range of EDA, high inhale-exhale ratio, lower minimum temperature, and high heart rate variability. In contrast, agents such as 'chest_EMG' and 'wrist_ACC' provided different answers, but their reasoning is likely affected by noise or unreliable signal interpretation. 'chest_EMG' may be influenced by the high dynamic range and band energy in certain frequency bands, which could be indicative of stress rather than baseline. 'wrist_ACC' may be misled by the low variability in the x and y axes, which could be a result of the subject's neutral state rather than a true baseline condition. Therefore, considering the majority of the agents' responses and the potential issues with the signal interpretation of 'chest_EMG' and 'wrist_ACC', the most likely answer is 'stress'."
+}
+
+Your task is to determine the responses from the fusion agents and provide a final reasoned answer for the task.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[HybridFusionAgent] [AI]
+{
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that the majority of the agents (chest_ACC, chest_ECG, chest_EDA, chest_RESP, chest_TEMP, wrist_BVP, wrist_EDA, wrist_TEMP) are leaning towards the 'stress' category. Although some agents (chest_EMG, wrist_ACC) are suggesting the 'baseline' category, their reasonings are not as strong as the ones supporting the 'stress' category. The 'amusement' category is not supported by any of the agents. Considering the consistency of the reasonings and the features that are being highlighted as indicative of stress, I lean towards the 'stress' category.",
+  "ANSWER": "stress"
+}
+
+

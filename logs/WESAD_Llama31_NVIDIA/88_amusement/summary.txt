@@ -1,0 +1,14 @@
+[Interpretation] <chest_ACC> provided answer: amusement
+[Interpretation] <chest_ECG> provided answer: amusement
+[Interpretation] <chest_EMG> provided answer: stress
+[Interpretation] <chest_EDA> provided answer: amusement
+[Interpretation] <chest_TEMP> provided answer: amusement
+[Interpretation] <chest_RESP> provided answer: stress
+[Interpretation] <wrist_ACC> provided answer: stress
+[Interpretation] <wrist_BVP> provided answer: stress
+[Interpretation] <wrist_EDA> provided answer: baseline
+[Interpretation] <wrist_TEMP> provided answer: baseline
+[Interpretation] Decision made: amusement (ground truth: amusement)
+[Semantic Fusion] Decision made: amusement (ground truth: amusement)
+[Statistical Fusion] Decision made: amusement (ground truth: amusement)
+[Hybrid Fusion] Decision made: amusement (ground truth: amusement)

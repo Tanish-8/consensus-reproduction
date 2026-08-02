@@ -1,0 +1,104 @@
+[HybridFusionAgent] [SYSTEM]
+You are a coordinator agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents, each interpreting different modalities, as well as two fusion agents that have already aggregated these responses in different ways.
+Your goal is to coordinate the responses from the fusion agents and provide a final reasoned answer for the task.
+
+
+[HybridFusionAgent] [SYSTEM]
+You are a coordinator agent that solves a multimodal sensing task based on interpretations from multiple sensing agents.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive reasonings and answers from multiple agents, each interpreting different modalities, as well as two fusion agents that have already aggregated these responses in different ways.
+Your goal is to coordinate the responses from the fusion agents and provide a final reasoned answer for the task.
+
+
+[HybridFusionAgent] [HUMAN]
+You have received the following information.
+1. Original responses from individual modality agents:
+{
+  "chest_ACC": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided features, the current sample features seem to be closer to the 'stress' example, as the standard deviation of the x-axis (chest_ACC_x_std) is higher compared to the 'baseline' example, and the absolute integral of the z-axis (chest_ACC_z_absolute_integral) is lower compared to the 'amusement' example. However, the peak frequency of the x-axis (chest_ACC_x_peak_frequency) is lower compared to the 'stress' example, which might indicate a different emotional state. Considering the provided examples and the current sample features, I would lean towards 'stress' as the most likely answer."
+  },
+  "chest_ECG": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided examples, the current sample features show a higher heart rate variability (hrv) mean and standard deviation compared to the baseline example, but lower than the stress example. The heart rate (hr) mean is also closer to the baseline example. The LF/HF ratio is higher than the baseline example, but lower than the stress example. Considering these factors, the current sample features seem to be more similar to the stress example, but with some differences. However, the features are not entirely consistent with the stress example, and some values are closer to the baseline example. Therefore, the most likely answer is 'stress', but with some uncertainty."
+  },
+  "chest_EDA": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided features, the current sample features show a low mean and standard deviation of EDA, indicating a relatively stable and calm state. The low number of SCR events (chest_EDA_scr_num_segments: 2) and the low area under the SCR curve (chest_EDA_scr_auc: 0.07) also suggest a low level of stress or arousal. The correlation between SCL and time (chest_EDA_scl_time_corr: -0.93) is also low, which is more typical of a baseline state. The features do not show the high levels of EDA, SCR events, and SCL-time correlation that are characteristic of the stress condition. Additionally, the features do not show the high levels of EDA and SCR events that are characteristic of the amusement condition. Therefore, the current sample features are most consistent with the baseline condition."
+  },
+  "chest_EMG": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples and the current sample features, I notice that the current sample features have a mean frequency (chest_EMG_mean_freq) of 178.63, which is closer to the baseline example (193.97) than the stress (212.80) and amusement (204.01) examples. Additionally, the peak frequency (chest_EMG_peak_freq) of 115.00 is lower than the stress (148.50) and amusement (136.00) examples, but higher than the baseline example (127.00). The dynamic range (chest_EMG_dynamic_range) of 0.05 is also closer to the baseline example (0.04) than the stress (0.05) and amusement (0.06) examples. Considering these features, I lean towards the baseline category."
+  },
+  "chest_RESP": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'baseline' example in terms of inhale and exhale duration means and standard deviations. The inhale-exhale ratio is also closer to the 'baseline' example. However, the respiration rate is slightly higher than the 'baseline' example, which could be due to minor variations in data collection or processing. Considering the overall similarity to the 'baseline' example, I'm inclined to classify the current sample as 'baseline'."
+  },
+  "chest_TEMP": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'baseline' category, as the mean skin temperature (32.98\u00b0C) is lower than the 'stress' and 'amusement' examples. Additionally, the standard deviation (0.05\u00b0C) is slightly higher than the 'stress' and 'amusement' examples, which could indicate a more stable or neutral affective state. However, the slope (4.40e-06) is higher than the 'baseline' example, which could suggest a slight increase in skin temperature over time. Considering these factors, the most likely affective category is 'baseline'."
+  },
+  "wrist_ACC": {
+    "ANSWER": "amusement",
+    "REASON": "Based on the provided examples and the current sample features, the current sample features seem to be closer to the 'amusement' example. The wrist_ACC_x_mean and wrist_ACC_x_std values are lower compared to the 'baseline' and 'stress' examples, which could indicate a more relaxed state. The wrist_ACC_y_std value is also higher compared to the 'stress' example, which could indicate a more variable movement. Additionally, the wrist_ACC_mag_std value is lower compared to the 'stress' example, which could indicate a more stable movement. However, it's worth noting that the sensor features might be wrong due to the data collection or processing."
+  },
+  "wrist_BVP": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples and the current sample features, I observed that the current sample features have a higher mean heart rate variability (HRV) and a lower LF/HF ratio compared to the stress example. Additionally, the current sample features have a higher normalized LF component compared to the amusement example. These characteristics are more similar to the baseline example. However, the current sample features also have a higher HRV standard deviation and a higher normalized HF component compared to the baseline example. Considering these factors, I conclude that the current sample features are most likely indicative of the 'baseline' emotional state."
+  },
+  "wrist_EDA": {
+    "ANSWER": "stress",
+    "REASON": "Based on the provided features, the current sample features show a mean EDA value of 8.11, which is higher than the baseline example (7.65) but lower than the stress example (14.79). The standard deviation of 0.11 is also lower than the baseline example (0.17) and the stress example (0.46). The number of SCR events (28) is higher than the baseline example (20) and the amusement example (8). The sum of SCR magnitudes (1.70) is also higher than the baseline example (0.69) and the amusement example (1.45). These features suggest a moderate level of physiological activity, which is more consistent with the stress condition than the baseline or amusement conditions."
+  },
+  "wrist_TEMP": {
+    "ANSWER": "baseline",
+    "REASON": "Based on the provided examples, the current sample features seem to be closer to the 'baseline' example, as the mean temperature (34.78) is relatively high and stable, with a small standard deviation (0.02). The slope is also very small (-8.33e-05), indicating a stable temperature. However, the features do not perfectly match any of the examples, which could be due to differences in data collection or processing. Considering the available information, the most likely emotional state is 'baseline'."
+  }
+}
+
+2. Responses from fusion agents:
+{
+  "ANSWER": "baseline",
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that there is a consensus among the agents that the user's emotional state is most likely 'baseline'. The chest_EDA, chest_EMG, chest_RESP, and chest_TEMP agents all agree on this classification, citing low levels of physiological activity, stable skin temperature, and calm breathing patterns. While the wrist_BVP agent also suggests 'baseline', the wrist_EDA agent suggests 'stress', but with moderate levels of physiological activity. The wrist_ACC agent suggests 'amusement', but with some uncertainty due to potential issues with data collection or processing. Considering the overall consensus and the moderate levels of physiological activity suggested by the wrist_EDA agent, I lean towards the 'baseline' category."
+}
+
+{
+  "ANSWER": "baseline",
+  "REASON": "Based on the provided reasonings from multiple sensing agents, the majority of the agents (chest_EDA, chest_EMG, chest_RESP, chest_TEMP, wrist_BVP, wrist_TEMP) agree that the current sample features are most consistent with the 'baseline' emotional state. The agents that provided different answers (chest_ACC, chest_ECG, wrist_EDA, wrist_ACC) have reasonings that are likely affected by noise or unreliable signal interpretation. For example, chest_ACC's reasoning is based on a higher standard deviation of the x-axis, which might be due to minor variations in data collection or processing. Similarly, chest_ECG's reasoning is based on a higher heart rate variability mean and standard deviation, but lower than the stress example, which could be due to differences in data collection or processing. Wrist_EDA's reasoning is based on a moderate level of physiological activity, but the features are not entirely consistent with the stress example, and some values are closer to the baseline example. Wrist_ACC's reasoning is based on lower wrist_ACC_x_mean and wrist_ACC_x_std values, but the sensor features might be wrong due to data collection or processing. Considering the majority of the agents' reasonings and the potential issues with the agents that provided different answers, the most likely emotional state is 'baseline'."
+}
+
+Your task is to determine the responses from the fusion agents and provide a final reasoned answer for the task.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[HybridFusionAgent] [AI]
+{
+  "REASON": "After analyzing the reasonings and answers from multiple sensing agents, it appears that there is a consensus among the agents that the user's emotional state is most likely 'baseline'. The chest_EDA, chest_EMG, chest_RESP, and chest_TEMP agents all agree on this classification, citing low levels of physiological activity, stable skin temperature, and calm breathing patterns. While the wrist_BVP agent also suggests 'baseline', the wrist_EDA agent suggests 'stress', but with moderate levels of physiological activity. The wrist_ACC agent suggests 'amusement', but with some uncertainty due to potential issues with data collection or processing. Considering the overall consensus and the moderate levels of physiological activity suggested by the wrist_EDA agent, I lean towards the 'baseline' category.",
+  "ANSWER": "baseline"
+}
+
+

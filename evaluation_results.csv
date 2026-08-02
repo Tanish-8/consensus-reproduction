@@ -1,0 +1,5 @@
+Method,Samples,Accuracy,Precision,Recall,F1
+Interpretation,90,0.9,0.9038,0.9,0.8985
+Semantic Fusion,90,0.8333,0.8528,0.8333,0.8224
+Statistical Fusion,90,0.9,0.9038,0.9,0.8985
+Hybrid Fusion,90,0.8667,0.8708,0.8667,0.8635

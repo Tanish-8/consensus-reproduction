@@ -1,0 +1,173 @@
+[chest_RESP] [SYSTEM]
+You are chest_RESP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_RESP modality, and you have the following information about the modality:
+{
+  "Data collection": "Respiration (RESP, in %) was measured using a plethysmograph at 700 Hz. A bandpass filter (0.1\u20130.35 Hz) was applied to identify inhale/exhale cycles. Features include durations and statistics (mean, std) of each phase, inhalation/exhalation ratio, stretch, inspiration volume, respiration rate, and total cycle duration. Features were extracted from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A bandpass filter with cutoff frequencies of 0.1 Hz and 0.35 Hz was applied to the raw respiration signal. A peak detection algorithm was then used to identify minima and maxima, allowing estimation of inhalation and exhalation durations. From these, the mean and standard deviation of inhale and exhale durations were computed, along with their ratio (inhale-to-exhale). Additional features include stretch (difference between maximum and minimum respiratory signal), inspiration volume (area under the inhalation curve), respiration rate (mean number of breaths per minute), and average respiration cycle duration."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_RESP] [HUMAN]
+You have received sensor features from chest_RESP modality:
+chest_RESP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_RESP_inhale_duration_mean: 2.05
+  - chest_RESP_inhale_duration_std: 0.56
+  - chest_RESP_exhale_duration_mean: 2.08
+  - chest_RESP_exhale_duration_std: 0.66
+  - chest_RESP_inhale_exhale_ratio: 0.98
+  - chest_RESP_stretch: 23.60
+  - chest_RESP_inspiration_volume: 229.82
+  - chest_RESP_respiration_rate: 14.72
+  - chest_RESP_respiration_duration: 4.17
+
+*Example of stress*:
+  - chest_RESP_inhale_duration_mean: 2.16
+  - chest_RESP_inhale_duration_std: 1.05
+  - chest_RESP_exhale_duration_mean: 2.11
+  - chest_RESP_exhale_duration_std: 0.97
+  - chest_RESP_inhale_exhale_ratio: 1.02
+  - chest_RESP_stretch: 43.45
+  - chest_RESP_inspiration_volume: 330.77
+  - chest_RESP_respiration_rate: 16.12
+  - chest_RESP_respiration_duration: 4.32
+
+*Example of amusement*:
+  - chest_RESP_inhale_duration_mean: 3.06
+  - chest_RESP_inhale_duration_std: 1.22
+  - chest_RESP_exhale_duration_mean: 3.13
+  - chest_RESP_exhale_duration_std: 1.56
+  - chest_RESP_inhale_exhale_ratio: 0.98
+  - chest_RESP_stretch: 32.32
+  - chest_RESP_inspiration_volume: 418.52
+  - chest_RESP_respiration_rate: 9.94
+  - chest_RESP_respiration_duration: 6.34
+
+**Current sample features**:
+  - chest_RESP_inhale_duration_mean: 1.99
+  - chest_RESP_inhale_duration_std: 0.38
+  - chest_RESP_exhale_duration_mean: 1.82
+  - chest_RESP_exhale_duration_std: 0.18
+  - chest_RESP_inhale_exhale_ratio: 1.09
+  - chest_RESP_stretch: 9.07
+  - chest_RESP_inspiration_volume: 172.91
+  - chest_RESP_respiration_rate: 15.99
+  - chest_RESP_respiration_duration: 3.82
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_RESP] [HUMAN]
+Failed to parse the JSON from the previous response. Please try again.
+
+
+[chest_RESP] [SYSTEM]
+You are chest_RESP agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_RESP modality, and you have the following information about the modality:
+{
+  "Data collection": "Respiration (RESP, in %) was measured using a plethysmograph at 700 Hz. A bandpass filter (0.1\u20130.35 Hz) was applied to identify inhale/exhale cycles. Features include durations and statistics (mean, std) of each phase, inhalation/exhalation ratio, stretch, inspiration volume, respiration rate, and total cycle duration. Features were extracted from the most recent 60-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "A bandpass filter with cutoff frequencies of 0.1 Hz and 0.35 Hz was applied to the raw respiration signal. A peak detection algorithm was then used to identify minima and maxima, allowing estimation of inhalation and exhalation durations. From these, the mean and standard deviation of inhale and exhale durations were computed, along with their ratio (inhale-to-exhale). Additional features include stretch (difference between maximum and minimum respiratory signal), inspiration volume (area under the inhalation curve), respiration rate (mean number of breaths per minute), and average respiration cycle duration."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_RESP] [HUMAN]
+You have received sensor features from chest_RESP modality:
+chest_RESP features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_RESP_inhale_duration_mean: 2.05
+  - chest_RESP_inhale_duration_std: 0.56
+  - chest_RESP_exhale_duration_mean: 2.08
+  - chest_RESP_exhale_duration_std: 0.66
+  - chest_RESP_inhale_exhale_ratio: 0.98
+  - chest_RESP_stretch: 23.60
+  - chest_RESP_inspiration_volume: 229.82
+  - chest_RESP_respiration_rate: 14.72
+  - chest_RESP_respiration_duration: 4.17
+
+*Example of stress*:
+  - chest_RESP_inhale_duration_mean: 2.16
+  - chest_RESP_inhale_duration_std: 1.05
+  - chest_RESP_exhale_duration_mean: 2.11
+  - chest_RESP_exhale_duration_std: 0.97
+  - chest_RESP_inhale_exhale_ratio: 1.02
+  - chest_RESP_stretch: 43.45
+  - chest_RESP_inspiration_volume: 330.77
+  - chest_RESP_respiration_rate: 16.12
+  - chest_RESP_respiration_duration: 4.32
+
+*Example of amusement*:
+  - chest_RESP_inhale_duration_mean: 3.06
+  - chest_RESP_inhale_duration_std: 1.22
+  - chest_RESP_exhale_duration_mean: 3.13
+  - chest_RESP_exhale_duration_std: 1.56
+  - chest_RESP_inhale_exhale_ratio: 0.98
+  - chest_RESP_stretch: 32.32
+  - chest_RESP_inspiration_volume: 418.52
+  - chest_RESP_respiration_rate: 9.94
+  - chest_RESP_respiration_duration: 6.34
+
+**Current sample features**:
+  - chest_RESP_inhale_duration_mean: 1.99
+  - chest_RESP_inhale_duration_std: 0.38
+  - chest_RESP_exhale_duration_mean: 1.82
+  - chest_RESP_exhale_duration_std: 0.18
+  - chest_RESP_inhale_exhale_ratio: 1.09
+  - chest_RESP_stretch: 9.07
+  - chest_RESP_inspiration_volume: 172.91
+  - chest_RESP_respiration_rate: 15.99
+  - chest_RESP_respiration_duration: 3.82
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_RESP] [AI]
+{
+  "REASON": "The current sample features show a relatively low inhale and exhale duration, with a low standard deviation, indicating a more stable breathing pattern. The inhale-exhale ratio is slightly above 1, suggesting a slightly longer inhale phase. The stretch is relatively low, and the inspiration volume is also low. The respiration rate is high, but the respiration duration is relatively short. These features are more similar to the 'baseline' example, where the breathing pattern is calm and stable. However, the respiration rate is higher than in the 'baseline' example, which could indicate some level of stress or excitement. Considering the overall pattern, I would lean towards 'baseline' as the most likely answer.",
+  "ANSWER": "baseline"
+}
+
+

@@ -1,5 +1,6 @@
 import os
 import asyncio
+import time
 
 from langchain_ollama import ChatOllama
 from langchain_together import ChatTogether
@@ -59,6 +60,18 @@ class Model:
                 temperature=temperature,
                 top_p=top_p,
             )
+        elif model.startswith("nvidia"):
+            if "NVIDIA_API_KEY" not in os.environ:
+                print("[!] NVIDIA_API_KEY is not set")
+                assert 0
+
+            self.model = ChatOpenAI(
+                base_url="https://integrate.api.nvidia.com/v1",
+                api_key=os.environ["NVIDIA_API_KEY"],
+                model=model.replace("nvidia:", ""),
+                temperature=temperature,
+            top_p=top_p,
+        )
         else:
             self.model = init_chat_model(
                 model=model,
@@ -66,12 +79,27 @@ class Model:
             )
 
     def invoke(self, messages):
-        try:
-            response = self.model.invoke(messages)
-            return response
-        except Exception as e:
-            print(f"[Error] Error occurred while invoking LLM: {e}")
-            return e
+        retries = 5
+
+        for attempt in range(retries):
+            try:
+                response = self.model.invoke(messages)
+                return response
+
+            except Exception as e:
+                print(f"[Warning] Attempt {attempt + 1}/{retries} failed: {e}")
+
+                # Retry only on rate limit errors
+                if "429" in str(e) or "rate" in str(e).lower():
+                    wait = (attempt + 1) * 10
+                    print(f"[Info] Waiting {wait} seconds before retrying...")
+                    time.sleep(wait)
+                    continue
+
+                # Any other error: stop immediately
+                raise
+
+        raise RuntimeError("Maximum retries exceeded due to repeated rate limiting.")
 
 
 class AsyncModel:
@@ -79,6 +107,7 @@ class AsyncModel:
         self.model = model
 
     async def invoke(self, content):
+        await asyncio.sleep(2)
         loop = asyncio.get_event_loop()
         response = await loop.run_in_executor(
             None,

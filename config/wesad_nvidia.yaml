@@ -1,0 +1,11 @@
+seed: 0
+temperature: 0.0
+top_p: 1.0
+use_large_context: false
+num_instances: 3
+
+models:
+  - nvidia:meta/llama-3.1-8b-instruct
+
+data_path: ./data/WESAD/split/default_ex_1_seed_0
+log_path: ./logs/WESAD_Llama31_NVIDIA

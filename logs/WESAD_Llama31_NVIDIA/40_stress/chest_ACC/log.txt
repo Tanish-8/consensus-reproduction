@@ -1,0 +1,132 @@
+[chest_ACC] [SYSTEM]
+You are chest_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Physiological data was collected from a chest-worn accelerometer (ACC, in g), recording acceleration across three axes (x, y, z) and the overall magnitude at 700 Hz. Features were computed from the most recent 5-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_ACC] [SYSTEM]
+You are chest_ACC agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_ACC modality, and you have the following information about the modality:
+{
+  "Data collection": "Physiological data was collected from a chest-worn accelerometer (ACC, in g), recording acceleration across three axes (x, y, z) and the overall magnitude at 700 Hz. Features were computed from the most recent 5-second window. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "For raw accelerometer signals, the mean, standard deviation (std), and absolute integral were computed for each axis (x, y, z) and for the overall magnitude (mag). In addition, the peak frequency was extracted for each axis."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_ACC] [HUMAN]
+You have received sensor features from chest_ACC modality:
+chest_ACC features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_ACC_x_mean: 0.59
+  - chest_ACC_x_std: 0.05
+  - chest_ACC_x_peak_frequency: 0.02
+  - chest_ACC_x_absolute_integral: 35.43
+  - chest_ACC_y_mean: -0.02
+  - chest_ACC_y_std: 0.02
+  - chest_ACC_y_peak_frequency: 0.02
+  - chest_ACC_y_absolute_integral: 1.55
+  - chest_ACC_z_mean: -0.74
+  - chest_ACC_z_std: 0.07
+  - chest_ACC_z_peak_frequency: 0.02
+  - chest_ACC_z_absolute_integral: 44.49
+  - chest_ACC_mag_mean: 0.95
+  - chest_ACC_mag_std: 0.01
+  - chest_ACC_mag_absolute_integral: 57.16
+
+*Example of stress*:
+  - chest_ACC_x_mean: 0.70
+  - chest_ACC_x_std: 0.02
+  - chest_ACC_x_peak_frequency: 0.15
+  - chest_ACC_x_absolute_integral: 42.04
+  - chest_ACC_y_mean: 0.02
+  - chest_ACC_y_std: 0.01
+  - chest_ACC_y_peak_frequency: 0.07
+  - chest_ACC_y_absolute_integral: 0.98
+  - chest_ACC_z_mean: -0.62
+  - chest_ACC_z_std: 0.02
+  - chest_ACC_z_peak_frequency: 0.15
+  - chest_ACC_z_absolute_integral: 37.49
+  - chest_ACC_mag_mean: 0.94
+  - chest_ACC_mag_std: 7.93e-03
+  - chest_ACC_mag_absolute_integral: 56.36
+
+*Example of amusement*:
+  - chest_ACC_x_mean: 0.67
+  - chest_ACC_x_std: 8.07e-03
+  - chest_ACC_x_peak_frequency: 0.02
+  - chest_ACC_x_absolute_integral: 40.10
+  - chest_ACC_y_mean: -0.05
+  - chest_ACC_y_std: 6.62e-03
+  - chest_ACC_y_peak_frequency: 0.02
+  - chest_ACC_y_absolute_integral: 3.30
+  - chest_ACC_z_mean: -0.67
+  - chest_ACC_z_std: 9.87e-03
+  - chest_ACC_z_peak_frequency: 0.02
+  - chest_ACC_z_absolute_integral: 40.26
+  - chest_ACC_mag_mean: 0.95
+  - chest_ACC_mag_std: 5.29e-03
+  - chest_ACC_mag_absolute_integral: 56.93
+
+**Current sample features**:
+  - chest_ACC_x_mean: 0.70
+  - chest_ACC_x_std: 0.02
+  - chest_ACC_x_peak_frequency: 0.02
+  - chest_ACC_x_absolute_integral: 42.28
+  - chest_ACC_y_mean: 8.70e-04
+  - chest_ACC_y_std: 0.01
+  - chest_ACC_y_peak_frequency: 0.02
+  - chest_ACC_y_absolute_integral: 0.49
+  - chest_ACC_z_mean: -0.62
+  - chest_ACC_z_std: 0.03
+  - chest_ACC_z_peak_frequency: 0.02
+  - chest_ACC_z_absolute_integral: 37.29
+  - chest_ACC_mag_mean: 0.94
+  - chest_ACC_mag_std: 8.04e-03
+  - chest_ACC_mag_absolute_integral: 56.41
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_ACC] [AI]
+{
+  "REASON": "Based on the provided features, the current sample features are most similar to the stress example. The x-axis mean and absolute integral are close to the stress example, and the z-axis mean and absolute integral are also close to the stress example. Additionally, the standard deviation of the x-axis is very close to the stress example, which suggests a high level of consistency in the signal. The y-axis mean is very close to zero, which is also consistent with the stress example. However, the y-axis absolute integral is lower than the stress example, but still within a reasonable range. Considering these factors, the current sample features are most likely to be from the stress category.",
+  "ANSWER": "stress"
+}
+
+

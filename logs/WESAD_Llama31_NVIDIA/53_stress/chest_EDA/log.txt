@@ -1,0 +1,132 @@
+[chest_EDA] [SYSTEM]
+You are chest_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded from the chest at 700 Hz and low-pass filtered at 5 Hz. Features were derived from both tonic (SCL) and phasic (SCR) components. Statistical features (mean, std, min, max, slope, dynamic range) were computed from the raw signal. From the decomposed signals, features include SCL-time correlation, SCR count, total magnitude and duration, area under the curve (AUC), and more. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EDA] [SYSTEM]
+You are chest_EDA agent that solves a sensing task.
+You have the following information about the task:
+**Task**:
+Classify the user's emotional state into one of the three affective categories: ["baseline", "stress", "amusement"], based on physiological signals collected from wearable sensors.
+
+**Classes**:
+  - baseline: The subject was seated or standing at a table, reading neutral materials such as magazines. This condition aimed to induce a calm, neutral affective state.
+  - stress: The subject was engaged in the Trier Social Stress Test (TSST), involving public speaking and mental arithmetic under evaluation. This condition reliably induces cognitive and social stress.
+  - amusement: The subject watched a series of humorous video clips designed to elicit positive emotions such as laughter and amusement.
+
+You will receive sensor features from chest_EDA modality, and you have the following information about the modality:
+{
+  "Data collection": "Electrodermal activity (EDA, in \u03bcS) was recorded from the chest at 700 Hz and low-pass filtered at 5 Hz. Features were derived from both tonic (SCL) and phasic (SCR) components. Statistical features (mean, std, min, max, slope, dynamic range) were computed from the raw signal. From the decomposed signals, features include SCL-time correlation, SCR count, total magnitude and duration, area under the curve (AUC), and more. Each feature is named using the format 'position_modality_featurename', where 'featurename' describes the extracted statistic or characteristic (e.g., _mean, _std).",
+  "Feature extraction": "The raw EDA signal was first low-pass filtered at 5 Hz. From the filtered signal, basic statistical features were computed: mean, standard deviation, minimum, maximum, slope (first-to-last value divided by duration), and dynamic range (max \u2212 min). The signal was then decomposed into two components: tonic (skin conductance level, SCL) and phasic (skin conductance response, SCR). SCL reflects a slow-changing baseline, while SCR represents short-term stimulus-related responses. From each component, the mean and standard deviation were computed. Additional features include the correlation between SCL and time (scl_time_corr), number of SCR events (scr_num_segments), sum of SCR magnitudes (scr_sum_magnitudes), total SCR duration (scr_total_duration), and the area under the SCR curve (scr_auc)."
+}
+
+Your goal is to analyze the features and provide a reasoned answer using your knowledge.
+
+
+[chest_EDA] [HUMAN]
+You have received sensor features from chest_EDA modality:
+chest_EDA features:
+**Examples**
+Sensor values might not always align with your inherent knowledge due to differences in data collection or processing. So, we included a few labeled examples to help your interpretation:
+*Example of baseline*:
+  - chest_EDA_mean: 3.86
+  - chest_EDA_std: 0.02
+  - chest_EDA_min: 3.84
+  - chest_EDA_max: 3.89
+  - chest_EDA_slope: -7.32e-07
+  - chest_EDA_dynamic_range: 0.06
+  - chest_EDA_scl_mean: 3.86
+  - chest_EDA_scl_std: 0.02
+  - chest_EDA_scr_mean: 8.43e-05
+  - chest_EDA_scr_std: 2.81e-03
+  - chest_EDA_scl_time_corr: -0.94
+  - chest_EDA_scr_num_segments: 0
+  - chest_EDA_scr_sum_magnitudes: 0.00e+00
+  - chest_EDA_scr_total_duration: 15.11
+  - chest_EDA_scr_auc: 0.06
+
+*Example of stress*:
+  - chest_EDA_mean: 3.84
+  - chest_EDA_std: 0.02
+  - chest_EDA_min: 3.80
+  - chest_EDA_max: 3.89
+  - chest_EDA_slope: -8.88e-07
+  - chest_EDA_dynamic_range: 0.09
+  - chest_EDA_scl_mean: 3.84
+  - chest_EDA_scl_std: 0.02
+  - chest_EDA_scr_mean: 1.38e-04
+  - chest_EDA_scr_std: 5.44e-03
+  - chest_EDA_scl_time_corr: -0.96
+  - chest_EDA_scr_num_segments: 1
+  - chest_EDA_scr_sum_magnitudes: 0.02
+  - chest_EDA_scr_total_duration: 12.84
+  - chest_EDA_scr_auc: 0.12
+
+*Example of amusement*:
+  - chest_EDA_mean: 3.78
+  - chest_EDA_std: 8.17e-03
+  - chest_EDA_min: 3.77
+  - chest_EDA_max: 3.80
+  - chest_EDA_slope: -3.97e-07
+  - chest_EDA_dynamic_range: 0.03
+  - chest_EDA_scl_mean: 3.78
+  - chest_EDA_scl_std: 7.03e-03
+  - chest_EDA_scr_mean: -2.85e-05
+  - chest_EDA_scr_std: 3.63e-03
+  - chest_EDA_scl_time_corr: -0.93
+  - chest_EDA_scr_num_segments: 1
+  - chest_EDA_scr_sum_magnitudes: 0.01
+  - chest_EDA_scr_total_duration: 8.34
+  - chest_EDA_scr_auc: 0.08
+
+**Current sample features**:
+  - chest_EDA_mean: 3.92
+  - chest_EDA_std: 0.03
+  - chest_EDA_min: 3.90
+  - chest_EDA_max: 4.01
+  - chest_EDA_slope: 2.52e-07
+  - chest_EDA_dynamic_range: 0.11
+  - chest_EDA_scl_mean: 3.92
+  - chest_EDA_scl_std: 0.02
+  - chest_EDA_scr_mean: -1.19e-04
+  - chest_EDA_scr_std: 0.01
+  - chest_EDA_scl_time_corr: 0.62
+  - chest_EDA_scr_num_segments: 1
+  - chest_EDA_scr_sum_magnitudes: 0.05
+  - chest_EDA_scr_total_duration: 5.79
+  - chest_EDA_scr_auc: 0.18
+
+Please provide your answer for the task among ['baseline', 'stress', 'amusement'] and the reasoning for your answer.
+Note that the sensor features might be wrong due to the data collection or processing.
+You can evaluate the quality of the features by checking the examples you have.
+Respond in the following strict JSON format:
+{
+  "REASON": "<Reasoning for the answer>",
+  "ANSWER": "<Answer among ['baseline', 'stress', 'amusement']>",
+}
+
+Do not include any additional text outside the JSON.
+
+
+[chest_EDA] [AI]
+{
+  "REASON": "The current sample features show a chest_EDA_mean of 3.92, which is close to the examples of baseline (3.86) and stress (3.84). However, the chest_EDA_std of 0.03 is higher than the examples of baseline (0.02) and stress (0.02), but lower than the example of amusement (8.17e-03). The chest_EDA_scr_mean of -1.19e-04 is close to the example of stress (1.38e-04), but the chest_EDA_scr_std of 0.01 is lower than the example of stress (5.44e-03). The chest_EDA_scl_time_corr of 0.62 is closer to the example of amusement (-0.93) than the examples of baseline (-0.94) and stress (-0.96). Considering these factors, the current sample features seem to be more similar to the example of stress than the examples of baseline and amusement.",
+  "ANSWER": "stress"
+}
+
+
