@@ -38,21 +38,22 @@ class StatisticalFusionAgent(Agent):
         content = (
             "You have received responses from multiple sensing agents:\n"
             f"{responses_info}\n\n"
-            f"You are on the side that the correct answer is {majority_answer} which is the majority answer.\n"
+            f"The majority vote among agents is: {majority_answer}.\n"
             "Based on the given reasonings and answers, provide a final reasoned answer for the task.\n"
-            f"For agents who provided different answers from {majority_answer}, "
-            "explain why their reasoning is likely affected by noise or unreliable signal interpretation.\n"
-            f"Stay consistent with the position that the correct answer is likely {majority_answer}.\n"
+            "You may agree or disagree with the majority — justify your reasoning based on signal quality and evidence.\n"
             "Respond in the following strict JSON format:\n"
             "{\n"
             '  "REASON": "<Reasoning for the answer>",\n'
-            f'  "ANSWER": "{majority_answer}",\n'
+            f'  "ANSWER": "<Answer among {self.classes_info}>",\n'
             "}\n\n"
             "Do not include any additional text outside the JSON."
         )
         response = await self.invoke(content)
+        print("\n[STAT FUSION RAW OUTPUT]")
+        print(response)
         parsed_response = self.safe_parse_json(response)
         parsed_response = await self.validate_response(
             parsed_response, ["REASON", "ANSWER"]
         )
+        print("[STAT FUSION PARSED]:", parsed_response)
         return parsed_response

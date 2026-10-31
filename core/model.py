@@ -41,9 +41,8 @@ class Model:
                     num_ctx=num_ctx,
                 )
         elif model.startswith("together"):
-            if "TOGETHER_API_KEY" not in os.environ:
-                print("[!] TOGETHER_API_KEY is not set")
-                assert 0
+            if not os.environ.get("TOGETHER_API_KEY"):
+                raise RuntimeError("TOGETHER_API_KEY environment variable is not set")
             self.model = ChatTogether(
                 model=model.replace("together:", ""),
                 temperature=temperature,
@@ -52,26 +51,37 @@ class Model:
                 max_retries=3,
             )
         elif model.startswith("openai"):
-            if "OPENAI_API_KEY" not in os.environ:
-                print("[!] OPENAI_API_KEY is not set")
-                assert 0
+            if not os.environ.get("OPENAI_API_KEY"):
+                raise RuntimeError("OPENAI_API_KEY environment variable is not set")
             self.model = ChatOpenAI(
                 model=model.replace("openai:", ""),
                 temperature=temperature,
                 top_p=top_p,
             )
         elif model.startswith("nvidia"):
-            if "NVIDIA_API_KEY" not in os.environ:
-                print("[!] NVIDIA_API_KEY is not set")
-                assert 0
+            if not os.environ.get("NVIDIA_API_KEY"):
+                raise RuntimeError("NVIDIA_API_KEY environment variable is not set")
 
             self.model = ChatOpenAI(
                 base_url="https://integrate.api.nvidia.com/v1",
                 api_key=os.environ["NVIDIA_API_KEY"],
                 model=model.replace("nvidia:", ""),
                 temperature=temperature,
-            top_p=top_p,
-        )
+                top_p=top_p,
+            )
+
+        elif model.startswith("openrouter:"):
+            if not os.environ.get("OPENROUTER_API_KEY"):
+                raise RuntimeError("OPENROUTER_API_KEY environment variable is not set")
+
+            self.model = ChatOpenAI(
+                base_url="https://openrouter.ai/api/v1",
+                api_key=os.environ["OPENROUTER_API_KEY"],
+                model=model.replace("openrouter:", ""),
+                temperature=temperature,
+                top_p=top_p,
+            )
+
         else:
             self.model = init_chat_model(
                 model=model,

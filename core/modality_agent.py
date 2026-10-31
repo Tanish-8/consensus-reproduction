@@ -101,4 +101,5 @@ class ModalityAgent(Agent):
         parsed_response = await self.validate_response(
             parsed_response, ["REASON", "ANSWER"]
         )
+        print(f"[DEBUG][{self.name}] Prediction:", parsed_response)
         return parsed_response

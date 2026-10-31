@@ -62,9 +62,20 @@ class AgentPool:
 
         responses = self.get_last_responses()
         answers = {k: v.get("ANSWER", "") for k, v in responses.items()}
+        self.modality_outputs = answers  # expose for external checkpoint
+        unique_answers = set(answers.values())
+
+        print("\n[MODALITY OUTPUTS]")
+        for k, v in answers.items():
+            print(f"  {k}: {v}")
+        print(f"  Unique answers: {unique_answers}  (disagreement={'YES' if len(unique_answers) > 1 else 'NO — all identical'})")
+
         for k, v in answers.items():
             self.log_summary(f"[Interpretation] <{k}> provided answer: {v}")
-        return self.vote(answers)
+
+        majority = self.vote(answers)
+        print(f"[MAJORITY ANSWER] {majority}")
+        return majority
 
     async def run_semantic_fusion(self):
         responses = self.get_last_responses()
@@ -87,6 +98,9 @@ class AgentPool:
             return None
 
         answer = result.get("ANSWER", "")
+        print(f"\n[STAT FUSION RAW] full parsed dict: {result}")
+        print(f"[STAT FUSION PARSED] ANSWER field: {repr(answer)}")
+        print(f"[STAT FUSION] majority_answer hint was: {repr(final_answer)}  |  same={answer == final_answer}")
         self.statistical_fusion_agent.update_memory()
         return answer
 

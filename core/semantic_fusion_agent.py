@@ -52,4 +52,6 @@ class SemanticFusionAgent(Agent):
         parsed_response = await self.validate_response(
             parsed_response, ["REASON", "ANSWER"]
         )
+        print("[DEBUG][SEMANTIC INPUT]:", responses)
+        print("[DEBUG][SEMANTIC OUTPUT]:", parsed_response)
         return parsed_response

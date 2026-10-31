@@ -76,52 +76,96 @@ async def run_sample(
     agent_pool.add_hybrid_fusion_agent(hybrid_fusion_agent)
 
     print(f"Running interpretation for sample {idx}")
-    result = await agent_pool.run_parallel_interpretation()
-    if result is None:
-        return None
+    interpretation_result = await agent_pool.run_parallel_interpretation()
+    if interpretation_result is None:
+        agent_pool.log_summary(
+            f"[Interpretation] Execution failed (ground truth: {test_sample['label']})"
+        )
+        agent_pool.log_summary(
+            f"[Semantic Fusion] Skipped (dependency failed) (ground truth: {test_sample['label']})"
+        )
+        agent_pool.log_summary(
+            f"[Statistical Fusion] Skipped (dependency failed) (ground truth: {test_sample['label']})"
+        )
+        agent_pool.log_summary(
+            f"[Hybrid Fusion] Skipped (dependency failed) (ground truth: {test_sample['label']})"
+        )
+        return
     agent_pool.log_summary(
-        f"[Interpretation] Decision made: {result} (ground truth: {test_sample['label']})"
+        f"[Interpretation] Decision made: {interpretation_result} (ground truth: {test_sample['label']})"
     )
     print(f"sample {idx} interpretation finished")
 
     print(f"Running semantic fusion for sample {idx}")
-    result = await agent_pool.run_semantic_fusion()
-    if result is None:
-        return
-    agent_pool.log_summary(
-        f"[Semantic Fusion] Decision made: {result} (ground truth: {test_sample['label']})"
-    )
+    semantic_result = await agent_pool.run_semantic_fusion()
+    if semantic_result is None:
+        agent_pool.log_summary(
+            f"[Semantic Fusion] Execution failed (ground truth: {test_sample['label']})"
+        )
+    else:
+        agent_pool.log_summary(
+            f"[Semantic Fusion] Decision made: {semantic_result} (ground truth: {test_sample['label']})"
+        )
     print(f"sample {idx} semantic fusion finished")
 
     print(f"Running statistical fusion for sample {idx}")
-    result = await agent_pool.run_statistical_fusion()
-    if result is None:
-        return
-    agent_pool.log_summary(
-        f"[Statistical Fusion] Decision made: {result} (ground truth: {test_sample['label']})"
-    )
+    statistical_result = await agent_pool.run_statistical_fusion()
+    if statistical_result is None:
+        agent_pool.log_summary(
+            f"[Statistical Fusion] Execution failed (ground truth: {test_sample['label']})"
+        )
+    else:
+        agent_pool.log_summary(
+            f"[Statistical Fusion] Decision made: {statistical_result} (ground truth: {test_sample['label']})"
+        )
     print(f"sample {idx} statistical fusion finished")
 
     print(f"Running hybrid fusion for sample {idx}")
-    result = await agent_pool.run_hybrid_fusion()
-    if result is None:
-        return
-    agent_pool.log_summary(
-        f"[Hybrid Fusion] Decision made: {result} (ground truth: {test_sample['label']})"
-    )
-    print(f"sample {idx} hybrid fusion finished")
+    if semantic_result is None or statistical_result is None:
+        agent_pool.log_summary(
+            f"[Hybrid Fusion] Skipped (dependency failed) (ground truth: {test_sample['label']})"
+        )
+    else:
+        hybrid_result = await agent_pool.run_hybrid_fusion()
+        if hybrid_result is None:
+            agent_pool.log_summary(
+                f"[Hybrid Fusion] Execution failed (ground truth: {test_sample['label']})"
+            )
+        else:
+            agent_pool.log_summary(
+                f"[Hybrid Fusion] Decision made: {hybrid_result} (ground truth: {test_sample['label']})"
+            )
+        print(f"sample {idx} hybrid fusion finished")
     print(f"sample {idx} finished")
     return
 
 
-async def run_parallel_samples(config, model_pool):
+def validate_max_samples(max_samples):
+    """Validate that max_samples is a positive integer if provided."""
+    if max_samples is None:
+        return None
+    try:
+        val = int(max_samples)
+    except (ValueError, TypeError):
+        raise ValueError(f"max_samples must be a positive integer, got: {max_samples}")
+    if val <= 0:
+        raise ValueError(f"max_samples must be a positive integer, got: {max_samples}")
+    return val
+
+
+async def run_parallel_samples(config, model_pool, max_samples=None):
     dataloader = DataLoader(config["data_path"])
     modalities = dataloader.get_modalities()
     task_info = dataloader.get_task_info()
     classes_info = dataloader.get_classes_info()
     modality_info_dict = dataloader.get_modality_info_dict()
+
+    total_samples = len(dataloader)
+    max_samples = validate_max_samples(max_samples)
+    limit = total_samples if max_samples is None else min(max_samples, total_samples)
+
     tasks = []
-    for idx in range(len(dataloader)):
+    for idx in range(limit):
         test_sample, examples = dataloader[idx]
         task = asyncio.create_task(
             run_sample(
@@ -141,8 +185,12 @@ async def run_parallel_samples(config, model_pool):
     return
 
 
-def run(config_path):
+def run(config_path, max_samples=None):
+    max_samples = validate_max_samples(max_samples)
     config = yaml.load(open(config_path, "r", encoding="utf-8"), Loader=yaml.SafeLoader)
+    if max_samples is None and "max_samples" in config:
+        max_samples = validate_max_samples(config["max_samples"])
+
     np.random.seed(config["seed"])
     if config["use_large_context"]:
         num_ctx = 30000
@@ -155,7 +203,7 @@ def run(config_path):
         num_ctx=num_ctx,
     )
     print("Model pool initialized.")
-    asyncio.run(run_parallel_samples(config, model_pool))
+    asyncio.run(run_parallel_samples(config, model_pool, max_samples=max_samples))
 
 
 if __name__ == "__main__":
